@@ -8,6 +8,7 @@
     de ma carrière !</p>
 <p class="authorName">Jean FORTEROCHE</p>
 
+<h2>Liste des épisodes</h2>
 <?php
 while ($data = $episodes->fetch()) {
     ?>
@@ -26,7 +27,7 @@ while ($data = $episodes->fetch()) {
 
     </p>
     <em>
-        <a href="index.php?action=post&amp;id=<?= $data['idEpisode'] ?>">Lire</a>
+        <a href="index.php?action=detailsEpisode&amp;idEpisode=<?= $data['idEpisode'] ?>">Lire</a>
     </em>
 </div>
 <?php
