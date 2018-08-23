@@ -19,58 +19,62 @@
 
 </div>
 
-<div class="episodes">
-    <h3>Commentaires</h3>
 
-    <?php
+<div id="p2comment" class="container-fluid">
+
+    <div class="episodes">
+        <h3>Commentaires</h3>
+
+        <?php
 while ($comment = $comments->fetch()) {
     ?>
-    <p>
-        <strong>
-            <?= htmlspecialchars($comment['author']) ?>
-        </strong> le
-        <?= $comment['addDate_fr'] ?>
-        <br>
-    </p>
+        <h4>
+            <strong>
+                <?= htmlspecialchars($comment['author']) ?>
+            </strong> le
+            <?= $comment['addDate_fr'] ?>
+            <br>
+        </h4>
 
-    <p>
-        <?= nl2br(htmlspecialchars($comment['content'])) ?>
-    </p>
+        <p>
+            <?= nl2br(htmlspecialchars($comment['content'])) ?>
+        </p>
 
-    <a href="index.php?action=editViewComment&amp;id=<?= $comment['idComment'] ?>">Signaler</a>
+        <a href="index.php?action=editViewComment&amp;id=<?= $comment['idComment'] ?>">Signaler</a>
 
-    <?php
+        <?php
 }
 ?>
 
 
+    </div>
+
+
+
+
+    <div class="episodes">
+
+        <h3>Ajouter un commentaire</h3>
+        <form id="addComment" action="index.php?action=addComment&amp;id=<?= $detailsEpisode['idEpisode'] ?>"
+            method="post">
+            <div>
+                <label for="author">Auteur :</label>
+                <br />
+                <input type="text" id="author" name="author" />
+            </div>
+            <div class="addComment">
+                <label for="content">Commentaire :</label>
+                <br />
+                <textarea class="textAddComment" id="content" name="content"></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Ajouter" />
+            </div>
+        </form>
+
+    </div>
+
 </div>
-
-
-
-<div class="episodes">
-
-    <h3>Ajouter un commentaire</h3>
-    <form action="index.php?action=addComment&amp;id=<?= $detailsEpisode['idEpisode'] ?>"
-        method="post">
-        <div>
-            <label for="author">Auteur :</label>
-            <br />
-            <input type="text" id="author" name="author" />
-        </div>
-        <div>
-            <label for="content">Commentaire :</label>
-            <br />
-            <textarea id="content" name="content"></textarea>
-        </div>
-        <div>
-            <input type="submit" value="Ajouter" />
-        </div>
-    </form>
-
-</div>
-
-
 <?php $content = ob_get_clean(); ?>
 
 <!--lien pour faire apparaitre variables $content et $title dans le template :-->
