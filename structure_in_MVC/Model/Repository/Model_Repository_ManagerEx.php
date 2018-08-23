@@ -6,7 +6,7 @@ abstract class Manager //implémentaion de la class Manager pour factorisation d
 {
     protected function dbConnect()//connexion à la bdd :
     {
-        $db = new \PDO('mysql:host=localhost;dbname=blogjf;charset=utf8', '...', '...');//disponible dans fichier .gitignore
+        $db = new \PDO('mysql:host=localhost;dbname=blogjf;charset=utf8', '....', '...');//disponible dans fichier .gitignore
         return $db;
     }
 }

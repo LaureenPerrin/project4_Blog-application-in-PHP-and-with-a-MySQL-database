@@ -13,15 +13,19 @@ require_once("Model/Interface/Model_Interface_Readable.php");
      public function readItems()
      {
          $db = $this->dbConnect();
-         $req = $db->query('SELECT idEpisode, title, content, DATE_FORMAT(episodeDate, \'%d/%m/%Y à  %Hh%imin%ss\') AS episodeDate_fr FROM episodes ORDER BY episodeDate');
+         $req = $db->query('SELECT idEpisode, title, content, DATE_FORMAT(episodeDate, \'%d/%m/%Y à  %Hh%imin\') AS episodeDate_fr FROM episodes ORDER BY episodeDate');
 
          return $req;
+     }
+
+     public function readItemsById($var)
+     {
      }
      
      public function readById($postId)//récupère un épsode précis en fonction de son id :
      {
          $db = $this->dbConnect();
-         $req = $db->prepare('SELECT idEpisode, title, content, DATE_FORMAT(episodeDate, \'%d/%m/%Y à %Hh%imin%ss\') AS episodeDate_fr FROM episodes WHERE idEpisode = ?');
+         $req = $db->prepare('SELECT idEpisode, title, content, DATE_FORMAT(episodeDate, \'%d/%m/%Y à %Hh%imin\') AS episodeDate_fr FROM episodes WHERE idEpisode = ?');
          $req->execute(array($postId));
          $episode = $req->fetch();
 
