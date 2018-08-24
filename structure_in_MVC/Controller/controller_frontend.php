@@ -47,3 +47,10 @@ function addComment($idEpisode, $author, $content)//ajoute un commmmentaire à u
         header('Location: index.php?action=detailsEpisode&idEpisode=' . $idEpisode);
     }
 }
+
+
+function contactWriter()
+{
+    //header('Location: index.php?action=contactWriter');
+    require('view/frontend/p3_contactView.php');
+}
