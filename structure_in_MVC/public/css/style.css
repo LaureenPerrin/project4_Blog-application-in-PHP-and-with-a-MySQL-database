@@ -101,7 +101,7 @@ div#p2comment {
     padding: 0px;
 }
 
-form#addComment {
+.formAddComment {
     text-align: center;
 }
 
