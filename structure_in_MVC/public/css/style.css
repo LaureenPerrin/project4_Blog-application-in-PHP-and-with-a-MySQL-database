@@ -116,7 +116,49 @@ textarea#content {
     margin-bottom: 20px;
 }
 
+/*----------------------page 3 frontend contact-------------------------------------------------------------------*/
 
+h3#titleContact {
+    background-color: white;
+    color: black;
+    font-size: 2em;
+    margin-top: 85px;
+    margin-bottom: 20px;
+}
+
+p#pContact {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 65px;
+}
+
+div#envelopeRow {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+div#mailRow {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+i#envelopeContact, i#mailContact {
+    font-size: 5.5em;
+    color: rgba(41, 103, 154, 0.8);
+}
+
+a#linkContact {
+    background-color: white;
+    color: black;
+    font-style: italic;
+    text-decoration: underline;
+}
 
 
 /*------------------------------footer---------------------------------------------*/
@@ -124,6 +166,7 @@ textarea#content {
 footer{
     background-color:#29679A;
     color: white;
+    margin-top: 200px;
 }
 
 i#topButtonFront {
