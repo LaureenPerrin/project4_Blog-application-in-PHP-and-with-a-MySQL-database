@@ -3,7 +3,7 @@
 namespace projet4\Blog\Model;
 
 //créer/ajouter item :
-interface CreateItem
+interface Creatable
 {
-    public function createItem();
+    public function createItemsByIds($var1, $var2, $var3);
 }
