@@ -23,6 +23,7 @@
 <div id="p2comment" class="container-fluid">
 
     <div class="episodes">
+
         <h3>Commentaires</h3>
 
         <?php
@@ -48,15 +49,12 @@ while ($comment = $comments->fetch()) {
 
 
     </div>
-
-
-
-
     <div class="episodes">
 
         <h3>Ajouter un commentaire</h3>
-        <form id="addComment" action="index.php?action=addComment&amp;id=<?= $detailsEpisode['idEpisode'] ?>"
+        <form class="formAddComment" action="index.php?action=addComment&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>"
             method="post">
+
             <div>
                 <label for="author">Auteur :</label>
                 <br />
@@ -68,7 +66,7 @@ while ($comment = $comments->fetch()) {
                 <textarea class="textAddComment" id="content" name="content"></textarea>
             </div>
             <div>
-                <input type="submit" value="Ajouter" />
+                <input type="submit" />
             </div>
         </form>
 
