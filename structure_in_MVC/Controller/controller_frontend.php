@@ -35,12 +35,7 @@ function addComment($idEpisode, $author, $content)//ajoute un commmmentaire à u
     //est ce vraiment utile :
     $insertComment = $comment->createComments($idEpisode, $author, $content);//insérer un commentaire :
 
-    if ($insertComment === false) {
-        throw new Exception('Impossible d\'ajouter le commentaire !');
-    } else {
-        //sinon on redirige vers le début de cette action :
-        header('Location: index.php?action=detailsEpisode&idEpisode=' . $idEpisode);
-    }
+    header('Location: index.php?action=detailsEpisode&idEpisode=' . $idEpisode);
 }
 
 
