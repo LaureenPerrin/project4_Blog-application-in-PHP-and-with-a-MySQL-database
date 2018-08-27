@@ -69,7 +69,7 @@
 
 
                         <li>
-                            <a>Contact</a>
+                            <a href="index.php?action=getWriterContact">Contact</a>
                         </li>
 
 
