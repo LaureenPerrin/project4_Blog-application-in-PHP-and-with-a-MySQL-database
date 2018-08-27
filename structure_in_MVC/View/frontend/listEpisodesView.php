@@ -20,7 +20,8 @@ while ($data = $episodes->fetch()) {
     </h3>
 
     <p>
-        <?= $extract = substr(nl2br(htmlspecialchars($data['content'])), 0, 500);
+        <?php
+        $extract = substr(nl2br(htmlspecialchars($data['content'])), 0, 500);
     $space = strrpos($extract, ' ');
     echo substr($extract, 0, $space) . '...'; ?>
         <br />
