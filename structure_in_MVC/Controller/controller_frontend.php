@@ -32,14 +32,13 @@ function addComment($idEpisode, $author, $content)//ajoute un commmmentaire à u
 {
     $comment = new \projet4\Blog\Model\CommentRepo();
     
-    //est ce vraiment utile :
     $insertComment = $comment->createComments($idEpisode, $author, $content);//insérer un commentaire :
 
     header('Location: index.php?action=detailsEpisode&idEpisode=' . $idEpisode);
 }
 
 
-function getWriterContact()
+function getWriterContact()//Contacter l'écrivain :
 {
     require('view/frontend/p3_contactView.php');
 }
