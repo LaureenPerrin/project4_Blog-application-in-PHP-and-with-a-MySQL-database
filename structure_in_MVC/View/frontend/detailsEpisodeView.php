@@ -27,8 +27,8 @@
         <h3>Commentaires</h3>
 
         <?php
-while ($comment = $comments->fetch()) {
-    ?>
+        while ($comment = $comments->fetch()) {
+        ?>
         <h4>
             <strong>
                 <?= htmlspecialchars($comment['author']) ?>
@@ -44,8 +44,8 @@ while ($comment = $comments->fetch()) {
         <a href="index.php?action=editViewComment&amp;id=<?= $comment['idComment'] ?>">Signaler</a>
 
         <?php
-}
-?>
+        }
+        ?>
 
 
     </div>
