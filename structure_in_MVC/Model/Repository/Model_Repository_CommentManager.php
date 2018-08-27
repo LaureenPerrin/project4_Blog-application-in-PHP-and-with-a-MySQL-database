@@ -2,13 +2,10 @@
 //gestionnaire des commentaires d'épisodes :
 namespace projet4\Blog\Model;
 
-//lien pour la class Manager dont hÃ©rite la class CommentManager :
 require_once("Model/Repository/Model_Repository_Manager.php");
 require_once("Model/Interface/Model_Interface_Readable.php");
 require_once("Model/Interface/Model_Interface_Creatable.php");
 
-
-//pour gÃ©rer les commentaires :
  abstract class CommentManager extends Manager implements Readable, Creatable
  {
      /*fonctions pour interface readable----*/
