@@ -6,6 +6,6 @@ namespace projet4\Blog\Model;
 interface Readable
 {
     public function readItems();
-    public function readItemsById($var);
-    public function readById($var);//readById
+    public function readItemsById($idItem);
+    public function readById($idItem);
 }
