@@ -24,8 +24,8 @@ try { // On essaie de faire des choses
                 // Autre exception
                 throw new Exception('Aucun identifiant d\'épisode envoyé');
             }
-        } elseif ($_GET['action'] == 'contactWriter') {
-            contactWriter();
+        } elseif ($_GET['action'] == 'getWriterContact') {
+            getWriterContact();
         }
     } else {
         listEpisodes();
