@@ -13,7 +13,7 @@ function listEpisodes()//affiche la liste des épisodes :
     
     $episodes = $episode->readEpisodes();//récupère tous les derniers épisodes du blog :
     
-    require('view/frontend/p1_listEpisodesView.php');
+    require('view/frontend/listEpisodesView.php');
 }
 
 function detailsEpisode()//affiche un épisode en détail avec ses commentaires :
@@ -25,7 +25,7 @@ function detailsEpisode()//affiche un épisode en détail avec ses commentaires 
     $detailsEpisode = $episode->readEpisode($_GET['idEpisode']);//récupère un épisode précis en fonction de son id :
     $comments = $comment->readComments($_GET['idEpisode']);//récupère les commentaires associés à un ID d'épisode :
 
-    require('view/frontend/p2_detailsEpisodeView.php');
+    require('view/frontend/detailsEpisodeView.php');
 }
 
 function addComment($idEpisode, $author, $content)//ajoute un commmmentaire à un épisode et reste affiché sur la page actuelle :
@@ -40,5 +40,5 @@ function addComment($idEpisode, $author, $content)//ajoute un commmmentaire à u
 
 function getWriterContact()//Contacter l'écrivain :
 {
-    require('view/frontend/p3_contactView.php');
+    require('view/frontend/contactView.php');
 }
