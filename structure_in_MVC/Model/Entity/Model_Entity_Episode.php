@@ -41,8 +41,7 @@ class Episode
 
     public function getEpisodeDate()
     {
-        $date = new \DateTime($this->_episodeDate);
-        return $date->format('d-m-Y à H:i');
+        return new \DateTime($this->_episodeDate);
     }
     
     //fonctions setters
