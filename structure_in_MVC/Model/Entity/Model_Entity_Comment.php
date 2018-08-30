@@ -42,9 +42,10 @@ class Comment
 
     public function getAddDate()
     {
-        $date = new \DateTime($this->_addDate);
-        return $date->format('d-m-Y à H:i');
+        return new \DateTime($this->_addDate);
     }
+
+    
     
     //fonctions setters
     public function setIdComment()
@@ -63,7 +64,7 @@ class Comment
         return $this;
     }
 
-     public function setAuthor($author)
+    public function setAuthor($author)
     {
         if (is_string($author) && strlen($author) <= 70) {
             $this->_author = $author;
