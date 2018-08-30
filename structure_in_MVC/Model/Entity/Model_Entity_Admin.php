@@ -2,7 +2,6 @@
 
 namespace projet4\Blog\Model;
 
-//lien pour la class AdminManager dont hÃ©rite la class Admin:
 require_once("Model/Repository/Model_Repository_AdminManager.php");
 require_once("Model/Interface/Model_Interface_Readable.php");
 
@@ -35,30 +34,5 @@ require_once("Model/Interface/Model_Interface_Readable.php");
       public function getPassword()
       {
           return $this->_password;
-      }
-
-      //fonctions setters
-      public function setIdAdmin()
-      {
-          if (is_int($idAdmin) && $idAdmin >= 0) {
-              $this->_idAdmin = $idAdmin;
-          }
-          return $this;
-      }
-
-      public function setPseudo($pseudo)
-      {
-          if (!empty($pseudo) && strlen($pseudo) <= 70) {
-              $this->_pseudo= $pseudo;
-          }
-          return $this;
-      }
-
-      public function setPassword($password)
-      {
-          if (!empty($password) && strlen($password) <= 255) {
-              $this->_password= $password;
-          }
-          return $this;
       }
   }
