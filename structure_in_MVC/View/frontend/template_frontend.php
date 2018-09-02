@@ -75,7 +75,7 @@
 
 
                         <li>
-                            <a>Administrateur</a>
+                            <a href="index.php?action=formConnectionAdmin">Administrateur</a>
                         </li>
 
 
