@@ -1,15 +1,21 @@
 <?php
-//gestionnaire des commentaires d'épisodes :
-namespace projet4\Blog\Model;
+namespace projet4\Model\Repository;
+use projet4\Model\Repository\Manager;
+use projet4\Model\Interfaces\Readable;
+use projet4\Model\Interfaces\Creatable;
 
 require_once("Model/Repository/Model_Repository_Manager.php");
-require_once("Model/Interface/Model_Interface_Readable.php");
-require_once("Model/Interface/Model_Interface_Creatable.php");
+require_once("Model/Interfaces/Model_Interface_Readable.php");
+require_once("Model/Interfaces/Model_Interface_Creatable.php");
 
  abstract class CommentManager extends Manager implements Readable, Creatable
  {
      /*fonctions pour interface readable----*/
      public function readItems()
+     {
+     }
+     
+     public function readItemByGetPost($postName, $postPassword)
      {
      }
    
