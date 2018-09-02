@@ -1,7 +1,7 @@
 <?php
 
-namespace projet4\Blog\Model;
-
+namespace projet4\Model\Repository;
+use projet4\Model\Repository\CommentManager;
 require_once("Model/Repository/Model_Repository_CommentManager.php");
 
 class CommentRepo extends CommentManager
