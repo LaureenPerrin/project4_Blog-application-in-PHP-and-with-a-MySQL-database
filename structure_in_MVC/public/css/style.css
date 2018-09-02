@@ -161,6 +161,22 @@ a#linkContact {
 }
 
 
+/*----------------------page 1 backend connection-------------------------------------------------------------------*/
+
+.connection{
+    background-color: rgba(41, 103, 154, 0.8);
+    border-radius: 4px;
+    border: 2px solid #29679A;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    height: 400px;
+}
+
+h1.titleConnectAdmin {
+    margin-top: 50px;
+}
+
+
 /*------------------------------footer---------------------------------------------*/
 
 footer{
