@@ -1,5 +1,7 @@
 <?php
 
+Use \projet4\Model\Repository\EpisodeRepo;
+use \projet4\Model\Repository\CommentRepo;
 // Chargement des classes :
 require_once('Model/Entity/Model_Entity_Episode.php');
 require_once("Model/Repository/Model_Repository_EpisodeManager.php");
@@ -14,8 +16,8 @@ class ControllerFrontend
 
     public function __construct()
     {
-        $this->_episode = new \projet4\Blog\Model\EpisodeRepo();
-        $this->_comment = new \projet4\Blog\Model\CommentRepo();
+        $this->_episode = new EpisodeRepo();
+        $this->_comment = new CommentRepo();
     }
 
     public function listEpisodes()//affiche la liste des épisodes :
