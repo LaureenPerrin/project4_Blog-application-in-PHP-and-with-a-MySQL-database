@@ -1,6 +1,6 @@
 <?php
 
-namespace projet4\Blog\Model;
+namespace projet4\Model\Repository;
 
 abstract class Manager //implémentaion de la class Manager pour factorisation du code car $db commun aux deux managers (EpisodeManager et CommentManager):
 {
