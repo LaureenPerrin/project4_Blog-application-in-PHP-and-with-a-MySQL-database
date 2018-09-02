@@ -1,6 +1,6 @@
 <?php
 //gestionnaire de post de blog :
-namespace projet4\Blog\Model;
+namespace projet4\Model\Entity;
 
 class Episode
 {
