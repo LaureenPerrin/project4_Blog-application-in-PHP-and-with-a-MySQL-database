@@ -1,20 +1,25 @@
 <?php
 require('Controller/ControllerFrontend.php');
+require('Controller/ControllerBackend.php');
 
 try {
-    $route = new ControllerFrontend();
+    $routeFrontend = new ControllerFrontend();
+    $routeBackend = new ControllerBackend();
+    
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listEpisodes') {
-            $route->listEpisodes();
+            $routeFrontend->listEpisodes();
         } elseif ($_GET['action'] == 'detailsEpisode') {
-            $route->detailsEpisode();
+            $routeFrontend->detailsEpisode();
         } elseif ($_GET['action'] == 'addComment') {
-            $route->addComment($_GET['idEpisode'], $_POST['author'], $_POST['content']);
+            $routeFrontend->addComment($_GET['idEpisode'], $_POST['author'], $_POST['content']);
         } elseif ($_GET['action'] == 'getWriterContact') {
-            $route->getWriterContact();
-        }
+            $routeFrontend->getWriterContact();
+       } elseif ($_GET['action'] == 'formConnectionAdmin') {
+       $routeBackend->formConnectionAdmin();
+       }
     } else {
-        $route->listEpisodes();
+        $routeFrontend->listEpisodes();
     }
 } catch (Exception $e) {
     echo 'Erreur : ' . $e->getMessage();
