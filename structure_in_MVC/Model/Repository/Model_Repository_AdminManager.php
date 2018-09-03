@@ -1,6 +1,7 @@
 <?php
 
 namespace projet4\Model\Repository;
+
 use projet4\Model\Repository\Manager;
 use projet4\Model\Interfaces\Readable;
 
@@ -14,14 +15,9 @@ require_once("Model/Interfaces/Model_Interface_Readable.php");
      /*---fonctions readable interface-----*/
      public function readItems()//récupère les données admin :
      {
-     }
-
-     public function readItemByGetPost($postName, $postPassword)
-     {
          $db = $this->dbConnect();
-         $req = $db->prepare('SELECT * FROM admin WHERE pseudo = ? AND password = ?');
-         $req->execute(array($postName, $postPassword));
-
+         $req = $db->query('SELECT * FROM admin WHERE idAdmin = 1');
+         
          return $req;
      }
 
