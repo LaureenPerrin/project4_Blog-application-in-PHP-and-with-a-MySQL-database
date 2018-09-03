@@ -1,5 +1,6 @@
 <?php
 namespace projet4\Model\Repository;
+
 use projet4\Model\Repository\Manager;
 use projet4\Model\Interfaces\Readable;
 use projet4\Model\Interfaces\Creatable;
@@ -12,10 +13,6 @@ require_once("Model/Interfaces/Model_Interface_Creatable.php");
  {
      /*fonctions pour interface readable----*/
      public function readItems()
-     {
-     }
-     
-     public function readItemByGetPost($postName, $postPassword)
      {
      }
    
