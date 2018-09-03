@@ -3,10 +3,13 @@ require('Controller/ControllerFrontend.php');
 require('Controller/ControllerBackend.php');
 
 try {
+    session_id('1');
+    session_start();
     $routeFrontend = new ControllerFrontend();
     $routeBackend = new ControllerBackend();
     
     if (isset($_GET['action'])) {
+        /*-----partie frontend----*/
         if ($_GET['action'] == 'listEpisodes') {
             $routeFrontend->listEpisodes();
         } elseif ($_GET['action'] == 'detailsEpisode') {
@@ -15,9 +18,16 @@ try {
             $routeFrontend->addComment($_GET['idEpisode'], $_POST['author'], $_POST['content']);
         } elseif ($_GET['action'] == 'getWriterContact') {
             $routeFrontend->getWriterContact();
-       } elseif ($_GET['action'] == 'formConnectionAdmin') {
-       $routeBackend->formConnectionAdmin();
-       }
+        /*-----partie backend----*/
+        } elseif ($_GET['action'] == 'formConnectionAdmin') {
+            $routeBackend->formConnectionAdmin();
+        } elseif ($_GET['action'] == 'connectionAdmin') {
+            $routeBackend->connectionAdmin();
+        } elseif ($_GET['action'] == 'listEpisodesAdmin') {
+            $routeBackend->listEpisodesAdmin();
+        } elseif ($_GET['action'] == 'logoutAdmin') {
+            $routeBackend->logoutAdmin();
+        }
     } else {
         $routeFrontend->listEpisodes();
     }
