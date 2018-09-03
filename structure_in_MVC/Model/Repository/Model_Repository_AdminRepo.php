@@ -8,10 +8,9 @@ require_once("Model/Repository/Model_Repository_AdminManager.php");
 
 class AdminRepo extends AdminManager
 {
-    public function readAdmin($postName, $postPassword)//récupère tous les épisodes du blog :
+    public function readAdmin()
     {
-        $user = $this->readItemByGetPost($postName, $postPassword);
-        $admin = $user->fetch();
+        $admin = $this->readItems();
         return $admin;
     }
 }
