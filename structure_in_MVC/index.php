@@ -2,6 +2,8 @@
 require('Controller/ControllerFrontend.php');
 require('Controller/ControllerBackend.php');
 
+
+
 try {
     session_id('1');
     session_start();
@@ -27,6 +29,8 @@ try {
             $routeBackend->listEpisodesAdmin();
         } elseif ($_GET['action'] == 'logoutAdmin') {
             $routeBackend->logoutAdmin();
+        } elseif ($_GET['action'] == 'updateEpisodeView') {
+            $routeBackend->updateEpisodeView();
         }
     } else {
         $routeFrontend->listEpisodes();
