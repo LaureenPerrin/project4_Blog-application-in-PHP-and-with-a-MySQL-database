@@ -1,7 +1,8 @@
 <?php
 
-Use \projet4\Model\Repository\EpisodeRepo;
+use \projet4\Model\Repository\EpisodeRepo;
 use \projet4\Model\Repository\CommentRepo;
+
 // Chargement des classes :
 require_once('Model/Entity/Model_Entity_Episode.php');
 require_once("Model/Repository/Model_Repository_EpisodeManager.php");
@@ -34,7 +35,7 @@ class ControllerFrontend
             require('view/frontend/detailsEpisodeView.php');
         } else {
             // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
-            throw new Exception('Aucun identifiant de billet envoyé');
+            throw new Exception('Aucun identifiant d\'épisode envoyé');
         }
     }
 
