@@ -31,6 +31,8 @@ try {
             $routeBackend->logoutAdmin();
         } elseif ($_GET['action'] == 'updateEpisodeView') {
             $routeBackend->updateEpisodeView();
+        } elseif ($_GET['action'] == 'adminFormToAddEpisode') {
+            $routeBackend->adminFormToAddEpisode();
         }
     } else {
         $routeFrontend->listEpisodes();
