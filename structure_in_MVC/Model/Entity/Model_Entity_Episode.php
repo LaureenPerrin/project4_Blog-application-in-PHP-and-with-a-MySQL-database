@@ -9,20 +9,23 @@ class Episode
     private $_content;
     private $_episodeDate;
 
-    public function __construct()
+    public function __construct($value = array())
     {
-        $this->hydrate();
-    }
-    
-    public function hydrate()
-    {
+        if (!empty($value)) {
+            $this->hydrate($value);
+        }
     }
 
-    public function isValid()
+    public function hydrate($data)
     {
-        return !(empty($this->_title) || empty($this->_content));
+        foreach ($data as $attribut => $value) {
+            $method = 'set'.str_replace(' ', '', ucwords(str_replace('_', ' ', $attribut)));
+            if (is_callable(array($this, $method))) {
+                $this->$method($value);
+            }
+        }
     }
-    
+
     //fonctions getters
     public function getIdEpisode()
     {
@@ -45,7 +48,7 @@ class Episode
     }
     
     //fonctions setters
-    public function setIdEpisode()
+    public function setIdEpisode($idEpisode)
     {
         if (is_int($idEpisode) && $idEpisode >= 0) {
             $this->_idEpisode = $idEpisode;

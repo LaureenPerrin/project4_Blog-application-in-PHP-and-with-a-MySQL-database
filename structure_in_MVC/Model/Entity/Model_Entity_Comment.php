@@ -10,13 +10,21 @@ class Comment
     private $_content;
     private $_addDate;
 
-    public function __construct()
+    public function __construct($value = array())
     {
-        $this->hydrate();
+        if (!empty($value)) {
+            $this->hydrate($value);
+        }
     }
-    
-    public function hydrate()
+
+    public function hydrate($data)
     {
+        foreach ($data as $attribut => $value) {
+            $method = 'set'.str_replace(' ', '', ucwords(str_replace('_', ' ', $attribut)));
+            if (is_callable(array($this, $method))) {
+                $this->$method($value);
+            }
+        }
     }
     
     //fonctions getters
@@ -48,7 +56,7 @@ class Comment
     
     
     //fonctions setters
-    public function setIdComment()
+    public function setIdComment($idComment)
     {
         if (is_int($idComment) && $idComment >= 0) {
             $this->_idComment = $idComment;
@@ -56,7 +64,7 @@ class Comment
         return $this;
     }
 
-    public function setIdEpisode()
+    public function setIdEpisode($idEpisode)
     {
         if (is_int($idEpisode) && $idEpisode >= 0) {
             $this->_idEpisode = $idEpisode;
