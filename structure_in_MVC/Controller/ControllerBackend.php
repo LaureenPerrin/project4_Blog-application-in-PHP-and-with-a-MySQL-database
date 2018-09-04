@@ -1,5 +1,6 @@
 <?php
 
+
 use \projet4\Model\Repository\EpisodeRepo;
 use \projet4\Model\Repository\AdminRepo;
 use \projet4\Model\Repository\CommentRepo;
@@ -69,5 +70,17 @@ class ControllerBackend
         session_destroy();
         $error = "vous êtes maintenant déconnecté.";
         require('view/backend/connectionAdminView.php');
+    }
+
+    public function updateEpisodeView()
+    {
+        if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
+            $detailsEpisode = $this->_episode->readEpisode($_GET['idEpisode']);//récupère un épisode précis en fonction de son id :
+            $comments = $this->_comment->readComments($_GET['idEpisode']);//récupère les commentaires associés à un ID d'épisode :
+            require('view/backend/updateEpisodesView.php');
+        } else {
+            // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
+            throw new Exception('Aucun identifiant de billet envoyé');
+        }
     }
 }
