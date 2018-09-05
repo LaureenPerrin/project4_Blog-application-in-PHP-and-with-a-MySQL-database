@@ -202,6 +202,12 @@ div#buttonConnectionAdmin {
     padding: 0px 5px;
 }
 
+/*---------page 1bis listEpisodeAdminView----------------------------------------------*/
+
+a#updateEpisodeLink {
+    margin-top: 50px;
+}
+
 /*-----page 2 backend addEpisodeView--------------------------------------------------------*/
 
 div#formAddEpisode {
@@ -217,6 +223,9 @@ label.contentAddEpisode {
     margin-bottom: 0px;
 }
 
+div#publishedButton {
+    margin: 20px 0px;
+} 
 
 /*----------------------page 3 backend updateEpisodeView-------------------------------------------------------------------*/
 div#updateEpisode {
@@ -237,6 +246,10 @@ textarea#contentEpisode {
 div#p3BackendComment {
     padding: 0px;
     margin-top: 40px;
+}
+
+a#delateEpisodeButton {
+    background-color: rgba(41, 103, 154, 0)!important;
 }
 
 /*------------------------------footer---------------------------------------------*/
