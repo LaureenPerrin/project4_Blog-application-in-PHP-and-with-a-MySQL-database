@@ -6,4 +6,5 @@ namespace projet4\Model\Interfaces;
 interface Creatable
 {
     public function createItemsByIds($idMainItem, $authorSecondaryItem, $contentSecondaryItem);
+    public function createItemByDataPost($titleItem, $contentItem);
 }
