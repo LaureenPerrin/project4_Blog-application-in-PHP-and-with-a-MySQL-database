@@ -3,7 +3,7 @@
 namespace projet4\Model\Interfaces;
 
 //pour supprimer item :
-interface DelateItem
+interface Delatable
 {
     public function delateItem();
 }
