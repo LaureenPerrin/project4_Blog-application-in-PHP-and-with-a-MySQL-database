@@ -11,6 +11,20 @@ require_once("Model/Interfaces/Model_Interface_Creatable.php");
 
  abstract class CommentManager extends Manager implements Readable, Creatable
  {
+     /*fonctions pour interface creatable----*/
+     public function createItemsByIds($idEpisode, $author, $content)
+     {
+         $db = $this->dbConnect();
+         $comments = $db->prepare('INSERT INTO comments(idEpisode, author, content, addDate) VALUES(?, ?, ?, NOW())');
+         $affectedLines = $comments->execute(array($idEpisode, $author, $content));
+     
+         return $affectedLines;
+     }
+
+     public function createItemByDataPost($titleItem, $contentItem)
+     {
+     }
+        
      /*fonctions pour interface readable----*/
      public function readItems()
      {
@@ -33,15 +47,5 @@ require_once("Model/Interfaces/Model_Interface_Creatable.php");
          $comment = $req->fetch();
  
          return $comment;
-     }
-
-     /*fonctions pour interface creatable----*/
-     public function createItemsByIds($idEpisode, $author, $content)
-     {
-         $db = $this->dbConnect();
-         $comments = $db->prepare('INSERT INTO comments(idEpisode, author, content, addDate) VALUES(?, ?, ?, NOW())');
-         $affectedLines = $comments->execute(array($idEpisode, $author, $content));
-  
-         return $affectedLines;
      }
  }
