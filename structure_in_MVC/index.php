@@ -33,6 +33,8 @@ try {
             $routeBackend->updateEpisodeView();
         } elseif ($_GET['action'] == 'adminFormToAddEpisode') {
             $routeBackend->adminFormToAddEpisode();
+        } elseif ($_GET['action'] == 'addEpisode') {
+            $routeBackend->addEpisodes(strip_tags($_POST['title']), strip_tags($_POST['content']));
         }
     } else {
         $routeFrontend->listEpisodes();
