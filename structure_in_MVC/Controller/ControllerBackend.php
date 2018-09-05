@@ -1,10 +1,10 @@
 <?php
 
-
 use \projet4\Model\Repository\EpisodeRepo;
 use \projet4\Model\Repository\AdminRepo;
 use \projet4\Model\Repository\CommentRepo;
 use \projet4\Model\Entity\Admin;
+use \projet4\Model\Entity\Episode;
 
 // Chargement des classes :
 require_once('Model/Entity/Model_Entity_Episode.php');
@@ -18,6 +18,7 @@ require_once("Model/Repository/Model_Repository_AdminRepo.php");
 
 class ControllerBackend
 {
+    private $_episodeEntity;
     private $_episode;
     private $_comment;
     private $_admin;
@@ -29,6 +30,7 @@ class ControllerBackend
         $this->_comment = new CommentRepo();
         $this->_admin = new AdminRepo();
         $this->_adminEntity = new Admin();
+        $this->_episodeEntity = new Episode();
     }
 
     public function formConnectionAdmin()//Affiche le formulaire de connexion à l'espace administrateur :
@@ -79,8 +81,43 @@ class ControllerBackend
             $comments = $this->_comment->readComments($_GET['idEpisode']);//récupère les commentaires associés à un ID d'épisode :
             require('view/backend/updateEpisodesView.php');
         } else {
-            // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
-            throw new Exception('Aucun identifiant de billet envoyé');
+            throw new Exception('Aucun identifiant d\'épisode envoyé');
         }
     }
+
+    public function adminFormToAddEpisode()//Affiche le formulaire pour aouter un épisode :
+    {
+        require('view/backend/addEpisodesView.php');
+    }
+
+    public function addEpisodes($title, $content)//Permet d'ajouter un épisode :
+    {
+        if (isset($_POST) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['content']))) {
+            $verifiedTitle = $this->_episodeEntity->setTitle($title);
+            $verifiedContent = $this->_episodeEntity->setContent($content);
+            //Si le title <= 100 caractères et content -> is_string :
+            if ($verifiedTitle and $verifiedContent) {
+                $insertEpisode = $this->_episode->createEpisodes($title, $content);//insérer un épisode
+                header('Location: index.php?action=listEpisodesAdmin');
+            } else {
+                throw new Exception('Titre ou contenu de l\'épisode incorrects.');
+            }
+        } else {
+            throw new Exception('Veuillez remplir tous les champs s\'il vous plaît !');
+        }
+    }
+
+    /*public function editComment($id, $comment)
+    {
+        $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
+
+        $newComment = $commentManager->updateComment($id, $comment);
+
+        if ($newComment === false) {
+            throw new Exception('Impossible de modifier le commentaire !');
+        } else {
+            echo 'commentaire : ' . $_POST['comment'];
+            header('Location: index.php?action=listPosts&id=' . $id);
+        }
+    }*/
 }
