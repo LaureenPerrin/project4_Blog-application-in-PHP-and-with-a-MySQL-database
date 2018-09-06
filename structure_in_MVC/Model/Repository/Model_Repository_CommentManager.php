@@ -2,14 +2,16 @@
 namespace projet4\Model\Repository;
 
 use projet4\Model\Repository\Manager;
-use projet4\Model\Interfaces\Readable;
 use projet4\Model\Interfaces\Creatable;
+use projet4\Model\Interfaces\Readable;
+use projet4\Model\Interfaces\Delatable;
 
 require_once("Model/Repository/Model_Repository_Manager.php");
-require_once("Model/Interfaces/Model_Interface_Readable.php");
 require_once("Model/Interfaces/Model_Interface_Creatable.php");
+require_once("Model/Interfaces/Model_Interface_Readable.php");
+require_once("Model/Interfaces/Model_Interface_Delatable.php");
 
- abstract class CommentManager extends Manager implements Readable, Creatable
+ abstract class CommentManager extends Manager implements Creatable, Readable, Delatable
  {
      /*fonctions pour interface creatable----*/
      public function createItemsByIds($idEpisode, $author, $content)
@@ -47,5 +49,28 @@ require_once("Model/Interfaces/Model_Interface_Creatable.php");
          $comment = $req->fetch();
  
          return $comment;
+     }
+
+     /*fonctions pour interface delatable----*/
+     public function delateItemByIds($idComment, $idEpisode)
+     {
+         $db = $this->dbConnect();
+         $delateComment = $db->prepare('DELETE FROM comments WHERE idComment = ? AND idEpisode = ?');
+         $delateComment->execute(array($idComment, $idEpisode));
+    
+         return $delateComment;
+     }
+
+     public function delateItemById($idMainItem)
+     {
+     }
+
+     public function delateItemsById($idEpisode)
+     {
+         $db = $this->dbConnect();
+         $delateComments = $db->prepare('DELETE FROM comments WHERE idEpisode = ?');
+         $delateComments->execute(array($idEpisode));
+     
+         return $delateComments;
      }
  }
