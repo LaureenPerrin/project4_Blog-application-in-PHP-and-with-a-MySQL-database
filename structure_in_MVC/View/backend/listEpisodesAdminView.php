@@ -35,7 +35,7 @@ while ($data = $episodes->fetch()) {
 $episodes->closeCursor();
 ?>
 <em>
-    <a href="index.php?action=adminFormToAddEpisode">Ajouter un épisode</a>
+    <a id="updateEpisodeLink" href="index.php?action=adminFormToAddEpisode">Ajouter un épisode</a>
 </em>
 <?php $content = ob_get_clean(); ?>
 
