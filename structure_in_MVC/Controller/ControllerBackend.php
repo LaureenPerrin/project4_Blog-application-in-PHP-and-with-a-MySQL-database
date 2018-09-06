@@ -93,10 +93,8 @@ class ControllerBackend
     public function addEpisodes($title, $content)//Permet d'ajouter un épisode :
     {
         if (isset($_POST) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['content']))) {
-            $verifiedTitle = $this->_episodeEntity->setTitle($title);
-            $verifiedContent = $this->_episodeEntity->setContent($content);
             //Si le title <= 100 caractères et content -> is_string :
-            if ($verifiedTitle and $verifiedContent) {
+            if (strlen($_POST['title']) <= 100) {
                 $insertEpisode = $this->_episode->createEpisodes($title, $content);//insérer un épisode
                 header('Location: index.php?action=listEpisodesAdmin');
             } else {
@@ -107,17 +105,53 @@ class ControllerBackend
         }
     }
 
-    /*public function editComment($id, $comment)
+    public function delateComment($idComment, $idEpisode)
     {
-        $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
-
-        $newComment = $commentManager->updateComment($id, $comment);
-
-        if ($newComment === false) {
-            throw new Exception('Impossible de modifier le commentaire !');
+        if (isset($_GET['idEpisode'])) {
+            if ($_GET['idEpisode'] > 0) {
+                if (isset($_GET['idComment']) and $_GET['idComment'] > 0) {
+                    $comments = $this->_comment->delateComment($idComment, $idEpisode);
+                    header('Location: index.php?action=updateEpisodeView&idEpisode=' . $idEpisode);
+                } else {
+                    throw new Exception('Aucun identifiant de commentaire envoyé');
+                }
+            } else {
+                throw new Exception('Identifiant d\'épisode incorrect');
+            }
         } else {
-            echo 'commentaire : ' . $_POST['comment'];
-            header('Location: index.php?action=listPosts&id=' . $id);
+            throw new Exception('Aucun identifiant d\'épisode envoyé');
         }
-    }*/
+    }
+
+    public function delateEpisode($idEpisode)
+    {
+        if (isset($_GET['idEpisode'])) {
+            if ($_GET['idEpisode'] > 0) {
+                $detailsEpisode = $this->_episode->delateEpisode($idEpisode);
+                $comments = $this->_comment->delateComments($idEpisode);
+                header('Location: index.php?action=listEpisodesAdmin');
+            } else {
+                throw new Exception('Identifiant d\'épisode incorrect');
+            }
+        } else {
+            throw new Exception('Aucun identifiant d\'épisode envoyé');
+        }
+        require('view/backend/updateEpisodesView.php');
+    }
+
+    public function updateEpisode($content, $idEpisode)
+    {
+        if (isset($_GET['idEpisode'])) {
+            if ($_GET['idEpisode'] > 0) {
+                $detailsEpisode = $this->_episode->updateEpisode($content, $idEpisode);
+                //$comments = $this->_comment->delateComments($idEpisode);
+                header('Location: index.php?action=listEpisodesAdmin');
+            } else {
+                throw new Exception('Identifiant d\'épisode incorrect');
+            }
+        } else {
+            throw new Exception('Aucun identifiant d\'épisode envoyé');
+        }
+        require('view/backend/updateEpisodesView.php');
+    }
 }
