@@ -9,7 +9,7 @@
         </em>
         <?= htmlspecialchars($detailsEpisode['title']) ?>
     </h3>
-    <form action="index.php?action=editComment&amp;id=<?= $detailsEpisode['idEpisode'] ?>"
+    <form action="index.php?action=updateEpisode&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>"
         method="post">
         <div class="addComment">
             <textarea id="contentEpisode" name="content"><?= $detailsEpisode['content'] ?></textarea>
@@ -17,7 +17,13 @@
         <div class="buttonUpdateEpisode">
             <input type="submit" value="Modifier" />
         </div>
+        <div>
+            <a id="delateEpisodeButton" href="index.php?action=delateEpisode&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>"><input
+                    type="button" value="Supprimer" /></a>
+        </div>
     </form>
+
+
 </div>
 
 <div id="p3BackendComment" class="container-fluid">
@@ -41,7 +47,7 @@
             <?= nl2br(htmlspecialchars($comment['content'])) ?>
         </p>
 
-        <a href="index.php?action=editViewComment&amp;id=<?= $comment['idComment'] ?>">Supprimer</a>
+        <a href="index.php?action=delateComment&amp;idComment=<?= $comment['idComment'] ?>&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>">Supprimer</a>
 
         <?php
         }
