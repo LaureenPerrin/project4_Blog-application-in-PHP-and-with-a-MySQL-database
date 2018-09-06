@@ -3,7 +3,7 @@
 namespace projet4\Model\Interfaces;
 
 //pour modifier item :
-interface UpdateItem
+interface Updatable
 {
-    public function updateItem();
+    public function updateItemByIds($ContentItem, $idItem);
 }
