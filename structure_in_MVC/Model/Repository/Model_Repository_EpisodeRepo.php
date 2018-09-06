@@ -25,4 +25,16 @@ class EpisodeRepo extends EpisodeManager
         $readEpisode = $this->readById($idEpisode);
         return $readEpisode;
     }
+
+    public function updateEpisode($content, $idEpisode)
+    {
+        $updateEpisode = $this->updateItemByIds($content, $idEpisode);
+        return $updateEpisode;
+    }
+
+    public function delateEpisode($idEpisode)
+    {
+        $delateEpisode = $this->delateItemById($idEpisode);
+        return $delateEpisode;
+    }
 }
