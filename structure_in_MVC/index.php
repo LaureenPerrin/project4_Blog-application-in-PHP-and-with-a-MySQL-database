@@ -20,6 +20,7 @@ try {
             $routeFrontend->addComment($_GET['idEpisode'], $_POST['author'], $_POST['content']);
         } elseif ($_GET['action'] == 'getWriterContact') {
             $routeFrontend->getWriterContact();
+        
         /*-----partie backend----*/
         } elseif ($_GET['action'] == 'formConnectionAdmin') {
             $routeBackend->formConnectionAdmin();
@@ -35,6 +36,12 @@ try {
             $routeBackend->adminFormToAddEpisode();
         } elseif ($_GET['action'] == 'addEpisode') {
             $routeBackend->addEpisodes(strip_tags($_POST['title']), strip_tags($_POST['content']));
+        } elseif ($_GET['action'] == 'delateComment') {
+            $routeBackend->delateComment($_GET['idComment'], $_GET['idEpisode']);
+        } elseif ($_GET['action'] == 'delateEpisode') {
+            $routeBackend->delateEpisode($_GET['idEpisode']);
+        } elseif ($_GET['action'] == 'updateEpisode') {
+            $routeBackend->updateEpisode($_POST['content'], $_GET['idEpisode']);
         }
     } else {
         $routeFrontend->listEpisodes();
