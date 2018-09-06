@@ -3,14 +3,19 @@
 namespace projet4\Model\Repository;
 
 use projet4\Model\Repository\Manager;
-use projet4\Model\Interfaces\Readable;
 use projet4\Model\Interfaces\Creatable;
+use projet4\Model\Interfaces\Readable;
+use projet4\Model\Interfaces\Updatable;
+use projet4\Model\Interfaces\Delatable;
 
 require_once("Model/Repository/Model_Repository_Manager.php");
-require_once("Model/Interfaces/Model_Interface_Readable.php");
 require_once("Model/Interfaces/Model_Interface_Creatable.php");
+require_once("Model/Interfaces/Model_Interface_Readable.php");
+require_once("Model/Interfaces/Model_Interface_Updatable.php");
+require_once("Model/Interfaces/Model_Interface_Delatable.php");
+
 //pour gÃ©rer les épisodes :
- abstract class EpisodeManager extends Manager implements Readable, Creatable
+ abstract class EpisodeManager extends Manager implements Creatable, Readable, Delatable, Updatable
  {
      /*fonctions pour interface creatable----*/
      public function createItemsByIds($idEpisode, $author, $content)
@@ -26,10 +31,11 @@ require_once("Model/Interfaces/Model_Interface_Creatable.php");
          return $affectedLines;
      }
 
+     /*fonctions pour interface readable----*/
      public function readItems()//récupère tous les épisodes :
      {
          $db = $this->dbConnect();
-         $req = $db->query('SELECT idEpisode, title, content, DATE_FORMAT(episodeDate, \'%d/%m/%Y à  %Hh%imin\') AS episodeDate_fr FROM episodes ORDER BY episodeDate');
+         $req = $db->query('SELECT idEpisode, title, content, DATE_FORMAT(episodeDate, \'%d/%m/%Y à  %Hh%imin\') AS episodeDate_fr FROM episodes ORDER BY idEpisode');
          return $req;
      }
 
@@ -45,5 +51,33 @@ require_once("Model/Interfaces/Model_Interface_Creatable.php");
          $episode = $req->fetch();
 
          return $episode;
+     }
+     
+     /*fonctions pour interface updatable----*/
+     public function updateItemByIds($content, $idEpisode)
+     {
+         $db = $this->dbConnect();
+         $req = $db->prepare('UPDATE episodes SET content = ?, addDate = NOW() WHERE idEpisode = ?');
+         $newEpisode = $req->execute(array($content, $idEpisode));
+   
+         return $newEpisode;
+     }
+
+     /*fonctions pour interface delatable----*/
+     public function delateItemByIds($idItemSecondary, $idMainItem)
+     {
+     }
+ 
+     public function delateItemById($idEpisode)
+     {
+         $db = $this->dbConnect();
+         $delateEpisode = $db->prepare('DELETE FROM episodes WHERE idEpisode = ?');
+         $delateEpisode->execute(array($idEpisode));
+    
+         return $delateEpisode;
+     }
+     
+     public function delateItemsById($idMainItem)
+     {
      }
  }
