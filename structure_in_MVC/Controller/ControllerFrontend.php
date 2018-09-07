@@ -41,17 +41,19 @@ class ControllerFrontend
 
     public function addComment($idEpisode, $author, $content)//ajoute un commmmentaire à un épisode et reste affiché sur la page actuelle :
     {
-        if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
+        if (isset($idEpisode) && $idEpisode > 0) {
             if (!empty($_POST['author']) && !empty($_POST['content'])) {
-                $insertComment = $this->_comment->createComments($idEpisode, $author, $content);//insérer un commentaire :
-                header('Location: index.php?action=detailsEpisode&idEpisode=' . $idEpisode);
-            } else {
-                // Autre exception
-                throw new Exception('Tous les champs ne sont pas remplis !');
+                $affectedLines = $this->_comment->createComments($idEpisode, $author, $content);//insérer un commentaire :
+                //si l'objet est false alors on lève un exception :
+                if ($affectedLines === false) {
+                    throw new Exception('Impossible d\'ajouter le commentaire !');
+                } else {
+                    header('Location: index.php?action=detailsEpisode&idEpisode=' . $idEpisode);
+                }
             }
         } else {
             // Autre exception
-            throw new Exception('Aucun identifiant d\'épisode envoyé');
+            throw new Exception('Tous les champs ne sont pas remplis !');
         }
     }
 
