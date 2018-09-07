@@ -1,0 +1,9 @@
+<?php
+
+namespace projet4\Model\Interfaces;
+
+//pour modifier item :
+interface Updatable
+{
+    public function updateItemByIds($ContentItem, $idItem);
+}
