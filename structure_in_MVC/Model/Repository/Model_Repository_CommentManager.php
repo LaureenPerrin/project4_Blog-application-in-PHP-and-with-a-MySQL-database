@@ -17,10 +17,18 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      public function createItemsByIds($idEpisode, $author, $content)
      {
          $db = $this->dbConnect();
-         $comments = $db->prepare('INSERT INTO comments(idEpisode, author, content, addDate) VALUES(?, ?, ?, NOW())');
-         $affectedLines = $comments->execute(array($idEpisode, $author, $content));
+         
+         $sql = $db->prepare("INSERT INTO comments(`idEpisode`, `author`, `content`, `addDate`, `isReported`, `isModerate`) VALUES (:idEpisode, :author, :content, NOW(), '0', '0')");
+         $sql->bindParam(':idEpisode', $idEpisode, \PDO::PARAM_INT);
+         $sql->bindParam(':author', $author, \PDO::PARAM_STR);
+         $sql->bindParam(':content', $content, \PDO::PARAM_STR);
+        
+         $sql->execute();
+         
+         /*$comments = $db->prepare('INSERT INTO comments(idEpisode, author, content, addDate) VALUES(?, ?, ?, NOW())');
+         $affectedLines = $comments->execute(array($idEpisode, $author, $content));*/
      
-         return $affectedLines;
+         return $sql;
      }
 
      public function createItemByDataPost($titleItem, $contentItem)
