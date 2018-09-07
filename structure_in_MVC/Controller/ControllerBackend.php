@@ -144,9 +144,11 @@ class ControllerBackend
         if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
             if (!empty($_POST['content'])) {
                 $newEpisode = $this->_episode->updateEpisode($content, $idEpisode);
+ 
                 if ($newEpisode === false) {
                     throw new Exception('Impossible de modifier l\'épisode !');
                 } else {
+                    echo 'commentaire : ' . $_POST['content'];
                     header('Location: index.php?action=updateEpisodeView&idEpisode=' . $idEpisode);
                 }
             } else {
@@ -155,5 +157,11 @@ class ControllerBackend
         } else {
             throw new Exception('Aucun identifiant de billet envoyÃ©');
         }
+    }
+
+    public function reportedCommentsView()
+    {
+        $comments = $this->_comment->readReportedComment();//récupère les commentaires signalés :
+        require('view/backend/reportedCommentsView.php');
     }
 }

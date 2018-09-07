@@ -42,6 +42,8 @@ try {
             $routeBackend->delateEpisode($_GET['idEpisode']);
         } elseif ($_GET['action'] == 'updateEpisode') {
             $routeBackend->updateEpisode($_POST['content'], $_GET['idEpisode']);
+        } elseif ($_GET['action'] == 'reportedCommentsView') {
+            $routeBackend->reportedCommentsView();
         }
     } else {
         $routeFrontend->listEpisodes();
