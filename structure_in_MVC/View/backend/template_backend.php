@@ -83,7 +83,7 @@
 
 
                         <li>
-                            <a href="">Modération</a>
+                            <a href="index.php?action=reportedCommentsView">Modération</a>
                         </li>
 
 
