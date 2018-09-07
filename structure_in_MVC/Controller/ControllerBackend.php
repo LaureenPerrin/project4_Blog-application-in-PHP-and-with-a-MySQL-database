@@ -141,17 +141,19 @@ class ControllerBackend
 
     public function updateEpisode($content, $idEpisode)
     {
-        if (isset($_GET['idEpisode'])) {
-            if ($_GET['idEpisode'] > 0) {
-                $detailsEpisode = $this->_episode->updateEpisode($content, $idEpisode);
-                //$comments = $this->_comment->delateComments($idEpisode);
-                header('Location: index.php?action=listEpisodesAdmin');
+        if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
+            if (!empty($_POST['content'])) {
+                $newEpisode = $this->_episode->updateEpisode($content, $idEpisode);
+                if ($newEpisode === false) {
+                    throw new Exception('Impossible de modifier l\'épisode !');
+                } else {
+                    header('Location: index.php?action=updateEpisodeView&idEpisode=' . $idEpisode);
+                }
             } else {
-                throw new Exception('Identifiant d\'épisode incorrect');
+                throw new Exception('Tous les champs ne sont pas remplis !');
             }
         } else {
-            throw new Exception('Aucun identifiant d\'épisode envoyé');
+            throw new Exception('Aucun identifiant de billet envoyÃ©');
         }
-        require('view/backend/updateEpisodesView.php');
     }
 }
