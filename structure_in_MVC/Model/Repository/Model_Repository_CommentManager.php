@@ -24,9 +24,6 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
          $sql->bindParam(':content', $content, \PDO::PARAM_STR);
         
          $sql->execute();
-         
-         /*$comments = $db->prepare('INSERT INTO comments(idEpisode, author, content, addDate) VALUES(?, ?, ?, NOW())');
-         $affectedLines = $comments->execute(array($idEpisode, $author, $content));*/
      
          return $sql;
      }
@@ -38,6 +35,10 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      /*fonctions pour interface readable----*/
      public function readItems()
      {
+         $db = $this->dbConnect();
+         $comments = $db->prepare('SELECT idComment, idEpisode, author, content, DATE_FORMAT(addDate, \'%d/%m/%Y à %Hh%imin%ss\') AS addDate_fr, isReported FROM comments WHERE isReported = ?  ORDER BY addDate DESC');
+         $comments->execute(array('1'));
+         return $comments;
      }
    
      public function readItemsById($idEpisode)//pour lire tous les commentaires d'un épisode en fonction de son id :
