@@ -14,6 +14,12 @@ class CommentRepo extends CommentManager
         return $createComments;
     }
 
+    public function readReportedComment()
+    {
+        $readReportedComment = $this->readItems();
+        return $readReportedComment;
+    }
+
     public function readComments($idEpisode)//récupère tous les commentaires d'un épisode :
     {
         $readComments = $this->readItemsById($idEpisode);
