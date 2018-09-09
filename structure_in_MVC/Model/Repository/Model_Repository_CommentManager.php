@@ -69,7 +69,6 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      {
          $db = $this->dbConnect();
          $req = $db->prepare("UPDATE `comments` SET `isReported` = '1' WHERE `idComment` = :valueid");
-         // $req->bindParam(':valueisreported', 1);
          $req->bindParam(':valueid', $idComment);
          $req->execute();
          return $req;
