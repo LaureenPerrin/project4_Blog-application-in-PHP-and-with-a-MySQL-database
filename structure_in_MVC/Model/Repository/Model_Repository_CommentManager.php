@@ -60,6 +60,21 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
          return $comment;
      }
 
+     /*fonctions pour interface updatable----*/
+     public function updateItemByIds($content, $idEpisode)
+     {
+     }
+ 
+     public function updateItemById($idComment)
+     {
+         $db = $this->dbConnect();
+         $req = $db->prepare("UPDATE `comments` SET `isReported` = '1' WHERE `idComment` = :valueid");
+         // $req->bindParam(':valueisreported', 1);
+         $req->bindParam(':valueid', $idComment);
+         $req->execute();
+         return $req;
+     }
+
      /*fonctions pour interface delatable----*/
      public function delateItemByIds($idComment, $idEpisode)
      {

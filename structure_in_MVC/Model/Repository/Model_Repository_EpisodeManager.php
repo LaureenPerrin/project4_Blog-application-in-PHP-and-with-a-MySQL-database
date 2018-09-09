@@ -56,13 +56,16 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      /*fonctions pour interface updatable----*/
      public function updateItemByIds($content, $idEpisode)
      {
-
          $db = $this->dbConnect();
-$req = $db->prepare("UPDATE `episodes` SET `content` = :valuecontent WHERE `idEpisode` = :valueid");    
-$req->bindParam(':valuecontent', $content);
-    $req->bindParam(':valueid', $idEpisode);
-    $req->execute();   
+         $req = $db->prepare("UPDATE `episodes` SET `content` = :valuecontent WHERE `idEpisode` = :valueid");
+         $req->bindParam(':valuecontent', $content);
+         $req->bindParam(':valueid', $idEpisode);
+         $req->execute();
          return $req;
+     }
+
+     public function updateItemById($idItem)
+     {
      }
 
      /*fonctions pour interface delatable----*/
