@@ -61,4 +61,19 @@ class ControllerFrontend
     {
         require('view/frontend/contactView.php');
     }
+
+    public function reportedComment($idComment)//Signaler un commentaire :
+    {
+        if (isset($idComment) && $idComment > 0) {
+            var_dump($idComment);
+            $reportedComment = $this->_comment->isReportedComment($idComment);
+            if ($reportedComment === false) {
+                throw new Exception('Impossible de signaler le commentaire!');
+            } else {
+                header('Location: index.php?action=listEpisodes');
+            }
+        } else {
+            throw new Exception('Aucun identifiant de commentaire envoyé');
+        }
+    }
 }
