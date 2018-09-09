@@ -32,6 +32,12 @@ class CommentRepo extends CommentManager
         return $readComment;
     }
 
+    public function isReportedComment($idComment)
+    {
+        $reportedComment = $this->updateItemById($idComment);
+        return $reportedComment;
+    }
+
     public function delateComment($idComment, $idEpisode)
     {
         $delateComment = $this->delateItemByIds($idComment, $idEpisode);
