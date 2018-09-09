@@ -20,6 +20,9 @@ try {
             $routeFrontend->addComment($_GET['idEpisode'], $_POST['author'], $_POST['content']);
         } elseif ($_GET['action'] == 'getWriterContact') {
             $routeFrontend->getWriterContact();
+        } elseif ($_GET['action'] == 'reportedComment') {
+            $routeFrontend->reportedComment($_GET['idComment']);
+            
         
         /*-----partie backend----*/
         } elseif ($_GET['action'] == 'formConnectionAdmin') {
