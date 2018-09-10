@@ -148,7 +148,6 @@ class ControllerBackend
                 if ($newEpisode === false) {
                     throw new Exception('Impossible de modifier l\'épisode !');
                 } else {
-                    echo 'commentaire : ' . $_POST['content'];
                     header('Location: index.php?action=updateEpisodeView&idEpisode=' . $idEpisode);
                 }
             } else {
