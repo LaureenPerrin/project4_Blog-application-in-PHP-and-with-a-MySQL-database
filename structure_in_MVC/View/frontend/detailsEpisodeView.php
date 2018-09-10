@@ -5,16 +5,19 @@
 <div class="episodes">
     <div>
         <h3>
-            <em>le
-                <?= $detailsEpisode['episodeDate_fr'] ?>
-            </em>
             <?= htmlspecialchars($detailsEpisode['title']) ?>
         </h3>
 
     </div>
     <p>
         <?= nl2br(htmlspecialchars($detailsEpisode['content'])) ?>
-        <br />
+        <br>
+        <br>
+        <em>
+            édité le
+            <?= $detailsEpisode['episodeDate_fr'] ?>
+
+        </em>
     </p>
 
 </div>
