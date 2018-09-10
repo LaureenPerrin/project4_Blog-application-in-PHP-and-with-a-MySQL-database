@@ -46,6 +46,10 @@
         <p>
             <?= nl2br(htmlspecialchars($comment['content'])) ?>
         </p>
+        <?php
+        if ($comment['isReported'] === '1' and $comment['isModerate'] === '1') {
+            echo '<p class="moderateCommentMessage">Ce commentaire est modéré.</p>';
+        } ?>
 
         <a href="index.php?action=delateComment&amp;idComment=<?= $comment['idComment'] ?>&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>">Supprimer</a>
 
