@@ -7,4 +7,5 @@ interface Updatable
 {
     public function updateItemByIds($ContentItem, $idItem);
     public function updateItemById($idItem);
+    public function updateItemByDataGet($idItem);
 }
