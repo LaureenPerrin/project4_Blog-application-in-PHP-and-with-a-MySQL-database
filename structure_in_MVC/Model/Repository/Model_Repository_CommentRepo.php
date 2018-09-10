@@ -32,19 +32,19 @@ class CommentRepo extends CommentManager
         return $readComment;
     }
 
-    public function isReportedComment($idComment)
+    public function isReportedComment($idEpisode, $idComment)//signaler les commentaires :
     {
-        $reportedComment = $this->updateItemById($idComment);
+        $reportedComment = $this->updateItemByIds($idEpisode, $idComment);
         return $reportedComment;
     }
 
-    public function delateComment($idComment, $idEpisode)
+    public function delateComment($idComment, $idEpisode)//Supprimer un commentaire :
     {
         $delateComment = $this->delateItemByIds($idComment, $idEpisode);
         return $delateComment;
     }
 
-    public function delateComments($idEpisode)
+    public function delateComments($idEpisode)//supprimer les commentaires d'un épisode :
     {
         $delateComments = $this->delateItemsById($idEpisode);
         return $delateComments;
