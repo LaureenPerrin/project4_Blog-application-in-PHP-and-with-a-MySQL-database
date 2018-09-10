@@ -44,6 +44,12 @@ class CommentRepo extends CommentManager
         return $moderateComment;
     }
 
+    public function isPublishedComment($idComment)//Modérer les commentaires signalés par les lecteurs :
+    {
+        $publishedComment = $this->updateItemByDataGet($idComment);
+        return $publishedComment;
+    }
+
     public function delateComment($idComment, $idEpisode)//Supprimer un commentaire :
     {
         $delateComment = $this->delateItemByIds($idComment, $idEpisode);
