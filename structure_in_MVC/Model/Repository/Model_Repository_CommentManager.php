@@ -36,7 +36,7 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      public function readItems()
      {
          $db = $this->dbConnect();
-         $comments = $db->prepare('SELECT idComment, idEpisode, author, content, DATE_FORMAT(addDate, \'%d/%m/%Y à %Hh%imin%ss\') AS addDate_fr, isReported FROM comments WHERE isReported = ?  ORDER BY addDate DESC');
+         $comments = $db->prepare('SELECT idComment, idEpisode, author, content, DATE_FORMAT(addDate, \'%d/%m/%Y à %Hh%imin%ss\') AS addDate_fr, isReported, isModerate FROM comments WHERE isReported = ?  ORDER BY addDate DESC');
          $comments->execute(array('1'));
          return $comments;
      }
@@ -44,7 +44,7 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      public function readItemsById($idEpisode)//pour lire tous les commentaires d'un épisode en fonction de son id :
      {
          $db = $this->dbConnect();
-         $comments = $db->prepare('SELECT idComment, idEpisode, author, content, DATE_FORMAT(addDate, \'%d/%m/%Y à %Hh%imin%ss\') AS addDate_fr FROM comments WHERE idEpisode = ? ORDER BY addDate DESC');
+         $comments = $db->prepare('SELECT idComment, idEpisode, author, content, DATE_FORMAT(addDate, \'%d/%m/%Y à %Hh%imin%ss\') AS addDate_fr, isReported, isModerate FROM comments WHERE idEpisode = ? ORDER BY addDate DESC');
          $comments->execute(array($idEpisode));
 
          return $comments;
@@ -75,11 +75,11 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
  
      public function updateItemById($idComment)
      {
-         /* $db = $this->dbConnect();
-          $req = $db->prepare("UPDATE `comments` SET `isReported` = '1' WHERE `idComment` = :valueid");
-          $req->bindParam(':valueid', $idComment);
-          $req->execute();
-          return $req;*/
+         $db = $this->dbConnect();
+         $req = $db->prepare("UPDATE `comments` SET `isModerate` = '1' WHERE `idComment` = :valueid");
+         $req->bindParam(':valueid', $idComment);
+         $req->execute();
+         return $req;
      }
 
      /*fonctions pour interface delatable----*/
