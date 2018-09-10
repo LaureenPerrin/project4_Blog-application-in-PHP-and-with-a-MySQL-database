@@ -62,18 +62,21 @@ class ControllerFrontend
         require('view/frontend/contactView.php');
     }
 
-    public function reportedComment($idComment)//Signaler un commentaire :
+    public function reportedComment($idEpisode, $idComment)//Signaler un commentaire :
     {
-        if (isset($idComment) && $idComment > 0) {
-            var_dump($idComment);
-            $reportedComment = $this->_comment->isReportedComment($idComment);
-            if ($reportedComment === false) {
-                throw new Exception('Impossible de signaler le commentaire!');
+        if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
+            if (isset($idComment)) {
+                $reportedComment = $this->_comment->isReportedComment($idEpisode, $idComment);
+                if ($reportedComment === false) {
+                    throw new Exception('Impossible de signaler le commentaire !');
+                } else {
+                    header('Location: index.php?action=detailsEpisode&idEpisode=' . $idEpisode);
+                }
             } else {
-                header('Location: index.php?action=listEpisodes');
+                throw new Exception('Aucun identifiant de commentaire envoyé');
             }
         } else {
-            throw new Exception('Aucun identifiant de commentaire envoyé');
+            throw new Exception('Aucun identifiant d\'épisode envoyé');
         }
     }
 }
