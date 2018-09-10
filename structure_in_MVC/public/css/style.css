@@ -252,6 +252,12 @@ a#delateEpisodeButton {
     background-color: rgba(41, 103, 154, 0)!important;
 }
 
+/*-----------------------------------page 4 backend modération------------------------*/
+
+div#reportedComment {
+    margin-top: 60px;
+}
+
 /*------------------------------footer---------------------------------------------*/
 
 footer{
