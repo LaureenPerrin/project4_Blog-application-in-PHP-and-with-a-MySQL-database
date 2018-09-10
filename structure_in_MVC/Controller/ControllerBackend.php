@@ -74,7 +74,7 @@ class ControllerBackend
         require('view/backend/connectionAdminView.php');
     }
 
-    public function updateEpisodeView()
+    public function updateEpisodeView()//Vue pour modifier ou supprimer un épisode :
     {
         if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
             $detailsEpisode = $this->_episode->readEpisode($_GET['idEpisode']);//récupère un épisode précis en fonction de son id :
@@ -85,7 +85,7 @@ class ControllerBackend
         }
     }
 
-    public function adminFormToAddEpisode()//Affiche le formulaire pour aouter un épisode :
+    public function adminFormToAddEpisode()//Affiche le formulaire pour ajouter un épisode :
     {
         require('view/backend/addEpisodesView.php');
     }
@@ -93,7 +93,6 @@ class ControllerBackend
     public function addEpisodes($title, $content)//Permet d'ajouter un épisode :
     {
         if (isset($_POST) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['content']))) {
-            //Si le title <= 100 caractères et content -> is_string :
             if (strlen($_POST['title']) <= 100) {
                 $insertEpisode = $this->_episode->createEpisodes($title, $content);//insérer un épisode
                 header('Location: index.php?action=listEpisodesAdmin');
@@ -158,9 +157,33 @@ class ControllerBackend
         }
     }
 
-    public function reportedCommentsView()
+    public function reportedCommentsView()//Vue des commentaires signalés :
     {
         $comments = $this->_comment->readReportedComment();//récupère les commentaires signalés :
         require('view/backend/reportedCommentsView.php');
+    }
+
+    public function moderatedComment($idComment)//Permet de modérer les commentaires :
+    {
+        $admin = $this->_admin->readAdmin();
+        $dataBaseAdmin = $admin->fetch();
+        if (session_status() === PHP_SESSION_ACTIVE) {//Si une session est bien active
+            if (session_id() == $dataBaseAdmin['idSession']) {
+                if (isset($idComment) and $idComment > 0) {
+                    $moderateComment = $this->_comment->isModerateComment($idComment);
+                    if ($moderateComment === false) {
+                        throw new Exception('Impossible de modérer le commentaire !');
+                    } else {
+                        header('Location: index.php?action=reportedCommentsView');
+                    }
+                } else {
+                    throw new Exception('Aucun identifiant de commentaire envoyé');
+                }
+            } else {
+                throw new Exception('Vous n\'avez pas les droits suffisants !');
+            }
+        } else {
+            throw new Exception('Aucune session d\'activée !');
+        }
     }
 }
