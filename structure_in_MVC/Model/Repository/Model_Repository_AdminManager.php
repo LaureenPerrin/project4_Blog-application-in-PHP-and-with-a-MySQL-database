@@ -8,16 +8,13 @@ use projet4\Model\Interfaces\Readable;
 require_once("Model/Repository/Model_Repository_Manager.php");
 require_once("Model/Interfaces/Model_Interface_Readable.php");
 
-
-//pour gÃ©rer l'admin :
  abstract class AdminManager extends Manager implements Readable
  {
      /*---fonctions readable interface-----*/
-     public function readItems()//récupère les données admin :
+     public function readItems()
      {
          $db = $this->dbConnect();
          $req = $db->query('SELECT * FROM admin WHERE idAdmin = 1');
-         
          return $req;
      }
 

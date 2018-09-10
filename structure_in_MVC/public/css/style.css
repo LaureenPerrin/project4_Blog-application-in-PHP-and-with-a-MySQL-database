@@ -1,4 +1,5 @@
 /*------------------------header-----------------*/
+
 header{
     background-color:#29679A;
     color: white;
@@ -9,26 +10,13 @@ ul.list-unstyled {
     justify-content: space-around;
 }
 
-
-
-/*---------------images page 1 frontend liste des épisodes----------------------*/
-
-img {
-    max-width: 100%;
-    margin-top: 20px;
-    border-radius: 4px;
-}
-
-
-/*--------------------titre page 1 frontend liste des épisodes-------------------*/
+/*------------------------Caractéristiques générales-----------------------*/
 
 h1{
     text-align: center;
     margin-top: 20px;
 }
 
-
-/*----------------------titre de la liste des épisodes----------------------------*/
 h2{
     text-align: center;
     font-style: italic;
@@ -36,12 +24,6 @@ h2{
     margin-top: 20px;
 }
 
-/*------------------------nom de l'auteur page 1 frontend-------------------------*/
-.authorName{
-    text-align: end;
-}
-
-/*------------------------Tous les h3 des différentes pages-----------------------*/
 h3
 {
     text-align:center;
@@ -52,8 +34,6 @@ h3
     padding: 10px 0px;
 }
 
-
-/*-----------------------Tous les h4 des différentes pages--------------------------*/
 h4{
     text-align:center;
     font-size:1em;
@@ -62,8 +42,6 @@ h4{
     border: 2px solid #29679A;
 }
 
-
-/*-----------------------affichage des épisodes------------------------------------*/
 .episodes p
 {
     padding: 10px;
@@ -81,7 +59,6 @@ h4{
     margin-bottom: 20px;
 }
 
-
 a {
     text-decoration: none;
     color: white;
@@ -95,7 +72,20 @@ a:hover{
     color: white;
 }
 
-/*-------------------page 2 frontend liste commentaires d'un épisode et form d'ajout de commentaire----------------*/
+/*---------------page 1 frontend_liste des épisodes----------------------*/
+
+img {
+    max-width: 100%;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.authorName{
+    text-align: end;
+}
+
+
+/*-------------------page 2 frontend_épisode détaillé et ses commentaires + form d'ajout de commentaire----------------*/
 
 div#p2comment {
     padding: 0px;
@@ -116,7 +106,7 @@ textarea#content {
     margin-bottom: 20px;
 }
 
-/*----------------------page 3 frontend contact-------------------------------------------------------------------*/
+/*----------------------page 3 frontend_contact-------------------------------------------------------------------*/
 
 h3#titleContact {
     background-color: white;
@@ -160,8 +150,7 @@ a#linkContact {
     text-decoration: underline;
 }
 
-
-/*----------------------page 1 backend connection-------------------------------------------------------------------*/
+/*----------------------page 1 backend_connection-------------------------------------------------------------------*/
 
 .connection{
     background-color: rgba(41, 103, 154, 0.8);
@@ -202,13 +191,13 @@ div#buttonConnectionAdmin {
     padding: 0px 5px;
 }
 
-/*---------page 1bis listEpisodeAdminView----------------------------------------------*/
+/*---------page 1bis_listEpisodeAdminView----------------------------------------------*/
 
 a#updateEpisodeLink {
     margin-top: 50px;
 }
 
-/*-----page 2 backend addEpisodeView--------------------------------------------------------*/
+/*-----page 2 backend_addEpisodeView--------------------------------------------------------*/
 
 div#formAddEpisode {
     margin-top: 60px;
@@ -227,7 +216,7 @@ div#publishedButton {
     margin: 20px 0px;
 } 
 
-/*----------------------page 3 backend updateEpisodeView-------------------------------------------------------------------*/
+/*----------------------page 3 backend_updateEpisodeView-------------------------------------------------------------------*/
 div#updateEpisode {
     margin: 70px 0px 20px 0px;
 }
@@ -252,7 +241,7 @@ a#delateEpisodeButton {
     background-color: rgba(41, 103, 154, 0)!important;
 }
 
-/*-----------------------------------page 4 backend modération------------------------*/
+/*-----------------------------------page 4 backend_modération------------------------*/
 
 div#reportedComment {
     margin-top: 60px;

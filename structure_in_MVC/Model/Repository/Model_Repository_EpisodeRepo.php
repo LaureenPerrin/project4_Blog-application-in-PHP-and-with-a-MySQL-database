@@ -8,30 +8,35 @@ require_once("Model/Repository/Model_Repository_EpisodeManager.php");
 
 class EpisodeRepo extends EpisodeManager
 {
-    public function createEpisodes($title, $content)//créer des commentaires en fonction d'un épisode :
+    //Créer des épisodes :
+    public function createEpisodes($title, $content)
     {
         $createEpisodes = $this->createItemByDataPost($title, $content);
         return $createEpisodes;
     }
 
-    public function readEpisodes()//récupère tous les épisodes du blog :
+    //Récupèrer tous les épisodes du blog :
+    public function readEpisodes()
     {
         $readEpisodes = $this->readItems();
         return $readEpisodes;
     }
-
-    public function readEpisode($idEpisode)//récupère un épisodes du blog en fonction de son id:
+    
+    //Récupèrer un épisodes du blog en fonction de son id :
+    public function readEpisode($idEpisode)
     {
         $readEpisode = $this->readById($idEpisode);
         return $readEpisode;
     }
-
+    
+    //Modifier un épisodes du blog en fonction de son id :
     public function updateEpisode($content, $idEpisode)
     {
         $updateEpisode = $this->updateItemByIds($content, $idEpisode);
         return $updateEpisode;
     }
-
+    
+    //Supprimer un épisodes du blog en fonction de son id :
     public function delateEpisode($idEpisode)
     {
         $delateEpisode = $this->delateItemById($idEpisode);

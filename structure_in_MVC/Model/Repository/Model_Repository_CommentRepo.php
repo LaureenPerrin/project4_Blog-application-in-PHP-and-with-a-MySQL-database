@@ -8,55 +8,64 @@ require_once("Model/Repository/Model_Repository_CommentManager.php");
 
 class CommentRepo extends CommentManager
 {
-    public function createComments($idEpisode, $author, $content)//créer des commentaires en fonction d'un épisode :
+    //Créer des commentaires en fonction d'un épisode :
+    public function createComments($idEpisode, $author, $content)
     {
         $createComments = $this->createItemsByIds($idEpisode, $author, $content);
         return $createComments;
     }
-
+    
+    //Récupérer les commentaires signalés :
     public function readReportedComment()
     {
         $readReportedComment = $this->readItems();
         return $readReportedComment;
     }
-
-    public function readComments($idEpisode)//récupère tous les commentaires d'un épisode :
+    
+    //Récupèrer tous les commentaires d'un épisode :
+    public function readComments($idEpisode)
     {
         $readComments = $this->readItemsById($idEpisode);
         return $readComments;
     }
-
-    public function readComment($idComment)//récupère un commentaire en fonction de son id :
+    
+    //Récupèrer un commentaire en fonction de son id :
+    public function readComment($idComment)
     {
         $readComment = $this->readById($idComment);
         return $readComment;
     }
-
-    public function isReportedComment($idEpisode, $idComment)//Signaler les commentaires :
+    
+    //Signaler les commentaires :
+    public function isReportedComment($idEpisode, $idComment)
     {
         $reportedComment = $this->updateItemByIds($idEpisode, $idComment);
         return $reportedComment;
     }
-
-    public function isModerateComment($idComment)//Modérer les commentaires signalés par les lecteurs :
+    
+    //Modérer les commentaires signalés par les lecteurs :
+    public function isModerateComment($idComment)
     {
         $moderateComment = $this->updateItemById($idComment);
         return $moderateComment;
     }
 
-    public function isPublishedComment($idComment)//Modérer les commentaires signalés par les lecteurs :
+    //Publier les commentaires modérés :
+    public function isPublishedComment($idComment)
     {
         $publishedComment = $this->updateItemByDataGet($idComment);
         return $publishedComment;
     }
-
-    public function delateComment($idComment, $idEpisode)//Supprimer un commentaire :
+    
+    //Supprimer un commentaire :
+    public function delateComment($idComment, $idEpisode)
     {
         $delateComment = $this->delateItemByIds($idComment, $idEpisode);
         return $delateComment;
     }
-
-    public function delateComments($idEpisode)//supprimer les commentaires d'un épisode :
+    
+    //Supprimer les commentaires d'un épisode :
+    public function delateComments($idEpisode)
     {
         $delateComments = $this->delateItemsById($idEpisode);
         return $delateComments;

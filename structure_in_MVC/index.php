@@ -1,8 +1,7 @@
 <?php
+
 require('Controller/ControllerFrontend.php');
 require('Controller/ControllerBackend.php');
-
-
 
 try {
     session_id('1');
@@ -23,7 +22,6 @@ try {
         } elseif ($_GET['action'] == 'reportedComment') {
             $routeFrontend->reportedComment($_GET['idEpisode'], $_GET['idComment']);
             
-        
         /*-----partie backend----*/
         } elseif ($_GET['action'] == 'formConnectionAdmin') {
             $routeBackend->formConnectionAdmin();

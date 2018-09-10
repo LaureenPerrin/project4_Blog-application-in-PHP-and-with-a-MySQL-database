@@ -14,7 +14,6 @@ require_once("Model/Interfaces/Model_Interface_Readable.php");
 require_once("Model/Interfaces/Model_Interface_Updatable.php");
 require_once("Model/Interfaces/Model_Interface_Delatable.php");
 
-//pour gÃ©rer les épisodes :
  abstract class EpisodeManager extends Manager implements Creatable, Readable, Delatable, Updatable
  {
      /*fonctions pour interface creatable----*/
@@ -32,7 +31,7 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      }
 
      /*fonctions pour interface readable----*/
-     public function readItems()//récupère tous les épisodes :
+     public function readItems()
      {
          $db = $this->dbConnect();
          $req = $db->query('SELECT idEpisode, title, content, DATE_FORMAT(episodeDate, \'%d/%m/%Y à  %Hh%imin\') AS episodeDate_fr FROM episodes ORDER BY idEpisode');
@@ -43,7 +42,7 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      {
      }
      
-     public function readById($idEpisode)//récupère un épisode précis en fonction de son id :
+     public function readById($idEpisode)
      {
          $db = $this->dbConnect();
          $req = $db->prepare('SELECT idEpisode, title, content, DATE_FORMAT(episodeDate, \'%d/%m/%Y à %Hh%imin\') AS episodeDate_fr FROM episodes WHERE idEpisode = ?');
