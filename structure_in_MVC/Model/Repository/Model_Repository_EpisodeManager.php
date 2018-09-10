@@ -6,7 +6,7 @@ use projet4\Model\Repository\Manager;
 use projet4\Model\Interfaces\Creatable;
 use projet4\Model\Interfaces\Readable;
 use projet4\Model\Interfaces\Updatable;
-use projet4\Model\Interfaces\Delatable;
+use projet4\Model\Interfaces\Deletable;
 
 require_once("Model/Repository/Model_Repository_Manager.php");
 require_once("Model/Interfaces/Model_Interface_Creatable.php");
@@ -14,7 +14,7 @@ require_once("Model/Interfaces/Model_Interface_Readable.php");
 require_once("Model/Interfaces/Model_Interface_Updatable.php");
 require_once("Model/Interfaces/Model_Interface_Delatable.php");
 
- abstract class EpisodeManager extends Manager implements Creatable, Readable, Delatable, Updatable
+ abstract class EpisodeManager extends Manager implements Creatable, Readable, Deletable, Updatable
  {
      /*fonctions pour interface creatable----*/
      public function createItemsByIds($idEpisode, $author, $content)
@@ -72,20 +72,20 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      }
 
      /*fonctions pour interface delatable----*/
-     public function delateItemByIds($idItemSecondary, $idMainItem)
+     public function deleteItemByIds($idItemSecondary, $idMainItem)
      {
      }
  
-     public function delateItemById($idEpisode)
+     public function deleteItemById($idEpisode)
      {
          $db = $this->dbConnect();
-         $delateEpisode = $db->prepare('DELETE FROM episodes WHERE idEpisode = ?');
-         $delateEpisode->execute(array($idEpisode));
+         $deleteEpisode = $db->prepare('DELETE FROM episodes WHERE idEpisode = ?');
+         $deleteEpisode->execute(array($idEpisode));
     
-         return $delateEpisode;
+         return $deleteEpisode;
      }
      
-     public function delateItemsById($idMainItem)
+     public function deleteItemsById($idMainItem)
      {
      }
  }

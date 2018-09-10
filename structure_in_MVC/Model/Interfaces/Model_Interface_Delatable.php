@@ -3,9 +3,9 @@
 namespace projet4\Model\Interfaces;
 
 //pour supprimer item :
-interface Delatable
+interface Deletable
 {
-    public function delateItemByIds($idItemSecondary, $idMainItem);
-    public function delateItemById($idMainItem);
-    public function delateItemsById($idMainItem);
+    public function deleteItemByIds($idItemSecondary, $idMainItem);
+    public function deleteItemById($idMainItem);
+    public function deleteItemsById($idMainItem);
 }

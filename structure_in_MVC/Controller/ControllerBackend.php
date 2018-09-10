@@ -116,12 +116,12 @@ class ControllerBackend
         }
     }
 
-    public function delateComment($idComment, $idEpisode)
+    public function deleteComment($idComment, $idEpisode)
     {
         if (isset($_GET['idEpisode'])) {
             if ($_GET['idEpisode'] > 0) {
                 if (isset($_GET['idComment']) and $_GET['idComment'] > 0) {
-                    $comments = $this->_comment->delateComment($idComment, $idEpisode);
+                    $comments = $this->_comment->deleteComment($idComment, $idEpisode);
                     header('Location: index.php?action=updateEpisodeView&idEpisode=' . $idEpisode);
                 } else {
                     throw new Exception('Aucun identifiant de commentaire envoyé');
@@ -134,12 +134,12 @@ class ControllerBackend
         }
     }
 
-    public function delateEpisode($idEpisode)
+    public function deleteEpisode($idEpisode)
     {
         if (isset($_GET['idEpisode'])) {
             if ($_GET['idEpisode'] > 0) {
-                $detailsEpisode = $this->_episode->delateEpisode($idEpisode);
-                $comments = $this->_comment->delateComments($idEpisode);
+                $detailsEpisode = $this->_episode->deleteEpisode($idEpisode);
+                $comments = $this->_comment->deleteComments($idEpisode);
                 header('Location: index.php?action=listEpisodesAdmin');
             } else {
                 throw new Exception('Identifiant d\'épisode incorrect');
@@ -184,20 +184,20 @@ class ControllerBackend
         $dataBaseAdmin = $admin->fetch();
         //Si une session est bien active :
         if (session_status() === PHP_SESSION_ACTIVE) {
-            if (session_id() == $dataBaseAdmin['idSession']) {
-                if (isset($idComment) and $idComment > 0) {
-                    $moderateComment = $this->_comment->isModerateComment($idComment);
-                    if ($moderateComment === false) {
-                        throw new Exception('Impossible de modérer le commentaire !');
-                    } else {
-                        header('Location: index.php?action=reportedCommentsView');
-                    }
+            //if (session_id() == $dataBaseAdmin['idSession']) {
+            if (isset($idComment) and $idComment > 0) {
+                $moderateComment = $this->_comment->isModerateComment($idComment);
+                if ($moderateComment === false) {
+                    throw new Exception('Impossible de modérer le commentaire !');
                 } else {
-                    throw new Exception('Aucun identifiant de commentaire envoyé');
+                    header('Location: index.php?action=reportedCommentsView');
                 }
             } else {
-                throw new Exception('Vous n\'avez pas les droits suffisants !');
+                throw new Exception('Aucun identifiant de commentaire envoyé');
             }
+            /*} else {
+                throw new Exception('Vous n\'avez pas les droits suffisants !');
+            }*/
         } else {
             throw new Exception('Aucune session d\'activée !');
         }
@@ -209,7 +209,7 @@ class ControllerBackend
         $admin = $this->_admin->readAdmin();
         $dataBaseAdmin = $admin->fetch();
         if (session_status() === PHP_SESSION_ACTIVE) {
-            if (session_id() == $dataBaseAdmin['idSession']) {
+            //if (session_id() == $dataBaseAdmin['idSession']) {
                 if (isset($idComment) and $idComment > 0) {
                     $moderateComment = $this->_comment->isPublishedComment($idComment);
                     if ($moderateComment === false) {
@@ -220,9 +220,9 @@ class ControllerBackend
                 } else {
                     throw new Exception('Aucun identifiant de commentaire envoyé');
                 }
-            } else {
+            /*} else {
                 throw new Exception('Vous n\'avez pas les droits suffisants !');
-            }
+            }*/
         } else {
             throw new Exception('Aucune session d\'activée !');
         }

@@ -58,16 +58,16 @@ class CommentRepo extends CommentManager
     }
     
     //Supprimer un commentaire :
-    public function delateComment($idComment, $idEpisode)
+    public function deleteComment($idComment, $idEpisode)
     {
-        $delateComment = $this->delateItemByIds($idComment, $idEpisode);
-        return $delateComment;
+        $deleteComment = $this->deleteItemByIds($idComment, $idEpisode);
+        return $deleteComment;
     }
     
     //Supprimer les commentaires d'un épisode :
-    public function delateComments($idEpisode)
+    public function deleteComments($idEpisode)
     {
-        $delateComments = $this->delateItemsById($idEpisode);
-        return $delateComments;
+        $deleteComments = $this->deleteItemsById($idEpisode);
+        return $deleteComments;
     }
 }

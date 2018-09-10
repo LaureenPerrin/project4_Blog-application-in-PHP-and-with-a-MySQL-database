@@ -18,7 +18,7 @@
             <input type="submit" value="Modifier" />
         </div>
         <div>
-            <a id="delateEpisodeButton" href="index.php?action=delateEpisode&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>"><input
+            <a id="delateEpisodeButton" href="index.php?action=deleteEpisode&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>"><input
                     type="button" value="Supprimer" /></a>
         </div>
     </form>
@@ -51,7 +51,7 @@
             echo '<p class="moderateCommentMessage">Ce commentaire est modéré.</p>';
         } ?>
 
-        <a href="index.php?action=delateComment&amp;idComment=<?= $comment['idComment'] ?>&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>">Supprimer</a>
+        <a href="index.php?action=deleteComment&amp;idComment=<?= $comment['idComment'] ?>&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>">Supprimer</a>
 
         <?php
         }

@@ -37,10 +37,10 @@ try {
             $routeBackend->adminFormToAddEpisode();
         } elseif ($_GET['action'] == 'addEpisode') {
             $routeBackend->addEpisodes(strip_tags($_POST['title']), strip_tags($_POST['content']));
-        } elseif ($_GET['action'] == 'delateComment') {
-            $routeBackend->delateComment($_GET['idComment'], $_GET['idEpisode']);
-        } elseif ($_GET['action'] == 'delateEpisode') {
-            $routeBackend->delateEpisode($_GET['idEpisode']);
+        } elseif ($_GET['action'] == 'deleteComment') {
+            $routeBackend->deleteComment($_GET['idComment'], $_GET['idEpisode']);
+        } elseif ($_GET['action'] == 'deleteEpisode') {
+            $routeBackend->deleteEpisode($_GET['idEpisode']);
         } elseif ($_GET['action'] == 'updateEpisode') {
             $routeBackend->updateEpisode($_POST['content'], $_GET['idEpisode']);
         } elseif ($_GET['action'] == 'reportedCommentsView') {

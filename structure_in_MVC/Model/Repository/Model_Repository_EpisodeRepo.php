@@ -37,9 +37,9 @@ class EpisodeRepo extends EpisodeManager
     }
     
     //Supprimer un épisodes du blog en fonction de son id :
-    public function delateEpisode($idEpisode)
+    public function deleteEpisode($idEpisode)
     {
-        $delateEpisode = $this->delateItemById($idEpisode);
+        $delateEpisode = $this->deleteItemById($idEpisode);
         return $delateEpisode;
     }
 }

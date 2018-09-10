@@ -4,14 +4,14 @@ namespace projet4\Model\Repository;
 use projet4\Model\Repository\Manager;
 use projet4\Model\Interfaces\Creatable;
 use projet4\Model\Interfaces\Readable;
-use projet4\Model\Interfaces\Delatable;
+use projet4\Model\Interfaces\Deletable;
 
 require_once("Model/Repository/Model_Repository_Manager.php");
 require_once("Model/Interfaces/Model_Interface_Creatable.php");
 require_once("Model/Interfaces/Model_Interface_Readable.php");
 require_once("Model/Interfaces/Model_Interface_Delatable.php");
 
- abstract class CommentManager extends Manager implements Creatable, Readable, Delatable
+ abstract class CommentManager extends Manager implements Creatable, Readable, Deletable
  {
      /*fonctions pour interface creatable----*/
      public function createItemsByIds($idEpisode, $author, $content)
@@ -22,9 +22,7 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
          $sql->bindParam(':idEpisode', $idEpisode, \PDO::PARAM_INT);
          $sql->bindParam(':author', $author, \PDO::PARAM_STR);
          $sql->bindParam(':content', $content, \PDO::PARAM_STR);
-        
          $sql->execute();
-     
          return $sql;
      }
 
@@ -38,6 +36,7 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
          $db = $this->dbConnect();
          $comments = $db->prepare('SELECT idComment, idEpisode, author, content, DATE_FORMAT(addDate, \'%d/%m/%Y à %Hh%imin%ss\') AS addDate_fr, isReported, isModerate FROM comments WHERE isReported = ?  ORDER BY addDate DESC');
          $comments->execute(array('1'));
+
          return $comments;
      }
    
@@ -92,25 +91,25 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      }
 
      /*fonctions pour interface delatable----*/
-     public function delateItemByIds($idComment, $idEpisode)
+     public function deleteItemByIds($idComment, $idEpisode)
      {
          $db = $this->dbConnect();
-         $delateComment = $db->prepare('DELETE FROM comments WHERE idComment = ? AND idEpisode = ?');
-         $delateComment->execute(array($idComment, $idEpisode));
+         $deleteComment = $db->prepare('DELETE FROM comments WHERE idComment = ? AND idEpisode = ?');
+         $deleteComment->execute(array($idComment, $idEpisode));
     
-         return $delateComment;
+         return $deleteComment;
      }
 
-     public function delateItemById($idMainItem)
+     public function deleteItemById($idMainItem)
      {
      }
 
-     public function delateItemsById($idEpisode)
+     public function deleteItemsById($idEpisode)
      {
          $db = $this->dbConnect();
-         $delateComments = $db->prepare('DELETE FROM comments WHERE idEpisode = ?');
-         $delateComments->execute(array($idEpisode));
+         $deleteComments = $db->prepare('DELETE FROM comments WHERE idEpisode = ?');
+         $deleteComments->execute(array($idEpisode));
      
-         return $delateComments;
+         return $deleteComments;
      }
  }
