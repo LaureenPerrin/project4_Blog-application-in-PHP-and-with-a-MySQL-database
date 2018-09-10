@@ -21,7 +21,7 @@ try {
         } elseif ($_GET['action'] == 'getWriterContact') {
             $routeFrontend->getWriterContact();
         } elseif ($_GET['action'] == 'reportedComment') {
-            $routeFrontend->reportedComment($_GET['idComment']);
+            $routeFrontend->reportedComment($_GET['idEpisode'], $_GET['idComment']);
             
         
         /*-----partie backend----*/
@@ -47,6 +47,8 @@ try {
             $routeBackend->updateEpisode($_POST['content'], $_GET['idEpisode']);
         } elseif ($_GET['action'] == 'reportedCommentsView') {
             $routeBackend->reportedCommentsView();
+        } elseif ($_GET['action'] == 'moderatedComment') {
+            $routeBackend->moderatedComment();
         }
     } else {
         $routeFrontend->listEpisodes();
