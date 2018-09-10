@@ -4,8 +4,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--titre de la page-->
-    <!--variable déclarée dans les vues :-->
     <title>
         <?= $title ?>
     </title>
@@ -17,7 +15,7 @@
     <meta property="og:title" content="Billet simple pour l'Alaska" />
     <meta property="og:type" content="blog" />
     <meta property="og:url" content="http://.../" />
-    <meta property="og:image" content="images/..." />
+    <meta property="og:image" content="public/images/logo_mountain2.png" />
     <meta property="og:description" content="Grâce à mon blog vous pouvez découvrir, au fur et mesure de sa création, mon nouveau roman 'Billet simple pour l\'Alaska'." />
 
     <!-- pour Twitter Card data -->
@@ -27,7 +25,7 @@
     <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
     <meta property="og:title" content="Blog" />
     <meta property="og:description" content="Grâce à mon blog vous pouvez découvrir, au fur et mesure de sa création, mon nouveau roman 'Billet simple pour l\'Alaska'." />
-    <meta property="og:image" content="images/..." />
+    <meta property="og:image" content="public/images/logo_mountain2.png" />
 
     <!--lien mise en  forme css-->
 
@@ -37,6 +35,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="public/css/style.css" />
 
+    <!--lien pour Tinymce-->
     <script type="text/javascript" src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
     <script type="text/javascript">
         tinymce.init({
@@ -55,7 +54,6 @@
         });
     </script>
 
-
 </head>
 
 <body>
@@ -70,45 +68,28 @@
                 </div>
             </div>
             <div class="col">
-
-
                 <nav>
-
                     <ul class="list-unstyled">
-
                         <li>
                             <a href="index.php?action=listEpisodesAdmin">Épisodes</a>
                         </li>
-
-
-
                         <li>
                             <a href="index.php?action=reportedCommentsView">Modération</a>
                         </li>
-
-
-
                         <li>
                             <a href="index.php?action=logoutAdmin">Déconnexion</a>
                         </li>
-
-
                     </ul>
-
                 </nav>
-
             </div>
         </div>
     </header>
 
     <div id="main_wrapper" class="container">
-
         <!--variable déclarée dans view:-->
         <div class="col-lg-12">
             <?= $content ?>
         </div>
-
-
     </div>
 
     <!--===================================== Pied de page ==============================================================================-->
@@ -123,14 +104,10 @@
         </span>
     </footer>
 
-
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!--lien js pour lien retour vers le haut dans footer-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
