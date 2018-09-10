@@ -143,11 +143,16 @@ i#envelopeContact, i#mailContact {
     color: rgba(41, 103, 154, 0.8);
 }
 
+p#adressContact {
+    margin-left: 30px;
+}
+
 a#linkContact {
     background-color: white;
     color: black;
     font-style: italic;
     text-decoration: underline;
+    margin-left: 30px;
 }
 
 /*----------------------page 1 backend_connection-------------------------------------------------------------------*/
