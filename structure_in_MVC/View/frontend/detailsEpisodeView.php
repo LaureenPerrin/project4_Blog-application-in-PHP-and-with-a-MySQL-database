@@ -43,7 +43,7 @@
             <?= nl2br(htmlspecialchars($comment['content'])) ?>
         </p>
 
-        <a href="index.php?action=editViewComment&amp;id=<?= $comment['idComment'] ?>">Signaler</a>
+        <a href="index.php?action=reportedComment&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>&amp;idComment=<?= $comment['idComment'] ?>">Signaler</a>
         <?php
         } elseif ($comment['isModerate'] === '1') {
             echo '<p class="moderateCommentMessage">Ce commentaire a été modéré.</p>';
