@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<div id="p2comment" class="container-fluid">
+<div id="reportedComment" class="container-fluid">
 
     <div class="episodes">
 
@@ -22,8 +22,10 @@
         <p>
             <?= nl2br(htmlspecialchars($comment['content'])) ?>
         </p>
-
-        <a href="index.php?action=editViewComment&amp;id=<?= $comment['idComment'] ?>">Signaler</a>
+        <a href="index.php?action=editViewComment&amp;id=<?= $comment['idComment'] ?>"><input
+                type="button" value="Publier" /></a>
+        <a href="index.php?action=editViewComment&amp;id=<?= $comment['idComment'] ?>"><input
+                type="button" value="Modérer" /></a>
 
         <?php
         }
