@@ -28,7 +28,7 @@
 
         <?php
         while ($comment = $comments->fetch()) {
-        ?>
+            ?>
         <h4>
             <strong>
                 <?= htmlspecialchars($comment['author']) ?>
@@ -36,13 +36,18 @@
             <?= $comment['addDate_fr'] ?>
             <br>
         </h4>
-
+        <?php
+        if ($comment['isModerate'] === '0') {
+            ?>
         <p>
             <?= nl2br(htmlspecialchars($comment['content'])) ?>
         </p>
 
         <a href="index.php?action=editViewComment&amp;id=<?= $comment['idComment'] ?>">Signaler</a>
-
+        <?php
+        } elseif ($comment['isModerate'] === '1') {
+            echo '<p class="moderateCommentMessage">Ce commentaire a été modéré.</p>';
+        } ?>
         <?php
         }
         ?>
