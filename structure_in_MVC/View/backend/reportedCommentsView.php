@@ -26,7 +26,7 @@
         if ($comment['isReported'] === '1' and $comment['isModerate'] === '1') {
             echo '<p class="moderateCommentMessage">Ce commentaire est modéré.</p>';
         } ?>
-        <a href="index.php?action=editViewComment&amp;idComment=<?= $comment['idComment'] ?>"><input
+        <a href="index.php?action=publishedComments&amp;idComment=<?= $comment['idComment'] ?>"><input
                 type="button" value="Publier" /></a>
         <a href="index.php?action=moderatedComment&amp;idComment=<?= $comment['idComment'] ?>"><input
                 type="button" value="Modérer" /></a>
