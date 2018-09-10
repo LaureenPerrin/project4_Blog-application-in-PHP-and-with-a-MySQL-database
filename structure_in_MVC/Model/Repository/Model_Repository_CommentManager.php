@@ -82,6 +82,15 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
          return $req;
      }
 
+     public function updateItemByDataGet($idComment)
+     {
+         $db = $this->dbConnect();
+         $req = $db->prepare("UPDATE `comments` SET `isReported` = '0' AND `isModerate` = '0' WHERE `idComment` = :valueid");
+         $req->bindParam(':valueid', $idComment);
+         $req->execute();
+         return $req;
+     }
+
      /*fonctions pour interface delatable----*/
      public function delateItemByIds($idComment, $idEpisode)
      {

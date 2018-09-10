@@ -68,6 +68,10 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      {
      }
 
+     public function updateItemByDataGet($idItem)
+     {
+     }
+
      /*fonctions pour interface delatable----*/
      public function delateItemByIds($idItemSecondary, $idMainItem)
      {
