@@ -186,4 +186,28 @@ class ControllerBackend
             throw new Exception('Aucune session d\'activée !');
         }
     }
+
+    public function publishedComments($idComment)//Permet de modérer les commentaires :
+    {
+        $admin = $this->_admin->readAdmin();
+        $dataBaseAdmin = $admin->fetch();
+        if (session_status() === PHP_SESSION_ACTIVE) {//Si une session est bien active
+            if (session_id() == $dataBaseAdmin['idSession']) {
+                if (isset($idComment) and $idComment > 0) {
+                    $moderateComment = $this->_comment->isPublishedComment($idComment);
+                    if ($moderateComment === false) {
+                        throw new Exception('Impossible de publier le commentaire !');
+                    } else {
+                        header('Location: index.php?action=reportedCommentsView');
+                    }
+                } else {
+                    throw new Exception('Aucun identifiant de commentaire envoyé');
+                }
+            } else {
+                throw new Exception('Vous n\'avez pas les droits suffisants !');
+            }
+        } else {
+            throw new Exception('Aucune session d\'activée !');
+        }
+    }
 }
