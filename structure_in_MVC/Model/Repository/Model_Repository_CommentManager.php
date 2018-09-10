@@ -85,7 +85,7 @@ require_once("Model/Interfaces/Model_Interface_Delatable.php");
      public function updateItemByDataGet($idComment)
      {
          $db = $this->dbConnect();
-         $req = $db->prepare("UPDATE `comments` SET `isReported` = '0' AND `isModerate` = '0' WHERE `idComment` = :valueid");
+         $req = $db->prepare("UPDATE `comments` SET isReported = '0', isModerate = '0' WHERE `idComment` = :valueid");
          $req->bindParam(':valueid', $idComment);
          $req->execute();
          return $req;
