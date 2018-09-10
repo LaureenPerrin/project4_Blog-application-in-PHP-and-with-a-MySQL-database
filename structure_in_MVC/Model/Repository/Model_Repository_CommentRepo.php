@@ -32,10 +32,16 @@ class CommentRepo extends CommentManager
         return $readComment;
     }
 
-    public function isReportedComment($idEpisode, $idComment)//signaler les commentaires :
+    public function isReportedComment($idEpisode, $idComment)//Signaler les commentaires :
     {
         $reportedComment = $this->updateItemByIds($idEpisode, $idComment);
         return $reportedComment;
+    }
+
+    public function isModerateComment($idComment)//Modérer les commentaires signalés par les lecteurs :
+    {
+        $moderateComment = $this->updateItemById($idComment);
+        return $moderateComment;
     }
 
     public function delateComment($idComment, $idEpisode)//Supprimer un commentaire :
