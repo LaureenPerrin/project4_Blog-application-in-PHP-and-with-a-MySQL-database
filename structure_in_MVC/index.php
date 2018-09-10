@@ -48,7 +48,7 @@ try {
         } elseif ($_GET['action'] == 'reportedCommentsView') {
             $routeBackend->reportedCommentsView();
         } elseif ($_GET['action'] == 'moderatedComment') {
-            $routeBackend->moderatedComment();
+            $routeBackend->moderatedComment($_GET['idComment']);
         }
     } else {
         $routeFrontend->listEpisodes();
