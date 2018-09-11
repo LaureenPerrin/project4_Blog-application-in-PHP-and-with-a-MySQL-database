@@ -3,15 +3,17 @@
 <?php ob_start(); ?>
 
 <div id="updateEpisode" class="episodes">
-    <h3>
-        <em>le
-            <?= $detailsEpisode['episodeDate_fr'] ?>
-        </em>
-        <?= htmlspecialchars($detailsEpisode['title']) ?>
-    </h3>
+    <h3>Mise à jour de l'épisode</h3>
     <form action="index.php?action=updateEpisode&amp;idEpisode=<?= $detailsEpisode['idEpisode'] ?>"
         method="post">
         <div class="addComment">
+            <label id="updateTitleEpisode" for="title">Titre de l'épisode :</label>
+            <br />
+            <textarea id="titleEpisode" name="title"><?= $detailsEpisode['title'] ?></textarea>
+        </div>
+        <div class="addComment">
+            <label id="updateContentEpisode" for="content">Contenu de l'épisode :</label>
+            <br />
             <textarea id="contentEpisode" name="content"><?= $detailsEpisode['content'] ?></textarea>
         </div>
         <div class="buttonUpdateEpisode">
