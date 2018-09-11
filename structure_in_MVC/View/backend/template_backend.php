@@ -1,3 +1,8 @@
+<?php
+
+if (isset($_SESSION['admin'])) {
+    ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -117,3 +122,8 @@
 </body>
 
 </html>
+
+<?php
+} else {
+        throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
+    }
