@@ -209,20 +209,16 @@ class ControllerBackend
         $admin = $this->_admin->readAdmin();
         $dataBaseAdmin = $admin->fetch();
         if (session_status() === PHP_SESSION_ACTIVE) {
-            //if (session_id() == $dataBaseAdmin['idSession']) {
-                if (isset($idComment) and $idComment > 0) {
-                    $moderateComment = $this->_comment->isPublishedComment($idComment);
-                    if ($moderateComment === false) {
-                        throw new Exception('Impossible de publier le commentaire !');
-                    } else {
-                        header('Location: index.php?action=reportedCommentsView');
-                    }
+            if (isset($idComment) and $idComment > 0) {
+                $moderateComment = $this->_comment->isPublishedComment($idComment);
+                if ($moderateComment === false) {
+                    throw new Exception('Impossible de publier le commentaire !');
                 } else {
-                    throw new Exception('Aucun identifiant de commentaire envoyé');
+                    header('Location: index.php?action=reportedCommentsView');
                 }
-            /*} else {
-                throw new Exception('Vous n\'avez pas les droits suffisants !');
-            }*/
+            } else {
+                throw new Exception('Aucun identifiant de commentaire envoyé');
+            }
         } else {
             throw new Exception('Aucune session d\'activée !');
         }
