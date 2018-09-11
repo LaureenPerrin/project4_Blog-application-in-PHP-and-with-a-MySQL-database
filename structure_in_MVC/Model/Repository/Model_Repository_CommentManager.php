@@ -9,7 +9,7 @@ use projet4\Model\Interfaces\Deletable;
 require_once("Model/Repository/Model_Repository_Manager.php");
 require_once("Model/Interfaces/Model_Interface_Creatable.php");
 require_once("Model/Interfaces/Model_Interface_Readable.php");
-require_once("Model/Interfaces/Model_Interface_Delatable.php");
+require_once("Model/Interfaces/Model_Interface_Deletable.php");
 
  abstract class CommentManager extends Manager implements Creatable, Readable, Deletable
  {

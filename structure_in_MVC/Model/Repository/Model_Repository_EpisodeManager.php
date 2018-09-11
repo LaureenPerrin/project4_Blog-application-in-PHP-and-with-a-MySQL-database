@@ -12,7 +12,7 @@ require_once("Model/Repository/Model_Repository_Manager.php");
 require_once("Model/Interfaces/Model_Interface_Creatable.php");
 require_once("Model/Interfaces/Model_Interface_Readable.php");
 require_once("Model/Interfaces/Model_Interface_Updatable.php");
-require_once("Model/Interfaces/Model_Interface_Delatable.php");
+require_once("Model/Interfaces/Model_Interface_Deletable.php");
 
  abstract class EpisodeManager extends Manager implements Creatable, Readable, Deletable, Updatable
  {
