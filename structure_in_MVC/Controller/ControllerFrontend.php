@@ -4,7 +4,6 @@ use \projet4\Model\Repository\EpisodeRepo;
 use \projet4\Model\Repository\CommentRepo;
 
 // Chargement des classes :
-require_once('Model/Entity/Model_Entity_Episode.php');
 require_once("Model/Repository/Model_Repository_EpisodeManager.php");
 require_once("Model/Repository/Model_Repository_EpisodeRepo.php");
 require_once("Model/Repository/Model_Repository_CommentManager.php");
