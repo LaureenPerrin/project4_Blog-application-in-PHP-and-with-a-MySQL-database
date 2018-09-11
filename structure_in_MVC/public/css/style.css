@@ -246,6 +246,11 @@ a#delateEpisodeButton {
     background-color: rgba(41, 103, 154, 0)!important;
 }
 
+label#updateTitleEpisode, label#updateContentEpisode {
+    text-align: center;
+    margin: 20px 0px;
+}
+
 /*-----------------------------------page 4 backend_modération------------------------*/
 
 div#reportedComment {
