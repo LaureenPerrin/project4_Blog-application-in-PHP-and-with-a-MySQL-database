@@ -30,9 +30,9 @@ class EpisodeRepo extends EpisodeManager
     }
     
     //Modifier un épisodes du blog en fonction de son id :
-    public function updateEpisode($content, $idEpisode)
+    public function updateEpisode($title, $content, $idEpisode)
     {
-        $updateEpisode = $this->updateItemByIds($content, $idEpisode);
+        $updateEpisode = $this->updateItemByDataPost($title, $content, $idEpisode);
         return $updateEpisode;
     }
     
