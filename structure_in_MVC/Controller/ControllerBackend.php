@@ -3,34 +3,28 @@
 use \projet4\Model\Repository\EpisodeRepo;
 use \projet4\Model\Repository\AdminRepo;
 use \projet4\Model\Repository\CommentRepo;
-use \projet4\Model\Entity\Admin;
-use \projet4\Model\Entity\Episode;
+use \projet4\Services\PasswordVerificationService;
 
 // Chargement des classes :
-require_once('Model/Entity/Model_Entity_Episode.php');
-require_once('Model/Entity/Model_Entity_Admin.php');
 require_once("Model/Repository/Model_Repository_EpisodeManager.php");
 require_once("Model/Repository/Model_Repository_EpisodeRepo.php");
 require_once("Model/Repository/Model_Repository_CommentManager.php");
 require_once("Model/Repository/Model_Repository_CommentRepo.php");
 require_once("Model/Repository/Model_Repository_AdminManager.php");
 require_once("Model/Repository/Model_Repository_AdminRepo.php");
+require_once("Services/Services_PasswordVerificationService.php");
 
 class ControllerBackend
 {
-    private $_episodeEntity;
     private $_episode;
     private $_comment;
     private $_admin;
-    private $_adminEntity;
 
     public function __construct()
     {
         $this->_episode = new EpisodeRepo();
         $this->_comment = new CommentRepo();
         $this->_admin = new AdminRepo();
-        $this->_adminEntity = new Admin();
-        $this->_episodeEntity = new Episode();
     }
 
     //Afficher le formulaire de connexion de l'espace administrateur :
@@ -46,7 +40,7 @@ class ControllerBackend
         //Récupérer les données de l'admin :
         $dataBaseAdmin = $admin->fetch();
         if (isset($_POST) and !empty(htmlspecialchars($_POST['pseudo'])) and !empty(htmlspecialchars($_POST['password']))) {
-            $isCorrectPassword = $this->_adminEntity->PasswordVerification($_POST['password'], $dataBaseAdmin['password']);
+            $isCorrectPassword = PasswordVerificationService::isPasswordCorrect($_POST['password'], $dataBaseAdmin['password']);
             if (($_POST['pseudo'] == $dataBaseAdmin['pseudo']) and $isCorrectPassword) {
                 //Vérifier si l'id de la session créée est bien celui attribué à l'admin :
                 if (session_id() == $dataBaseAdmin['idSession']) {
