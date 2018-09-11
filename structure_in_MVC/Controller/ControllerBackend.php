@@ -101,7 +101,7 @@ class ControllerBackend
     }
     
     //Ajouter un épisode :
-    public function addEpisodes($title, $content)
+    public function addEpisode($title, $content)
     {
         if (isset($_POST) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['content']))) {
             if (strlen($_POST['title']) <= 100) {
