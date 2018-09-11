@@ -46,7 +46,6 @@ class ControllerBackend
         //Récupérer les données de l'admin :
         $dataBaseAdmin = $admin->fetch();
         if (isset($_POST) and isset($_POST['pseudo']) and isset($_POST['password']) and !empty(htmlspecialchars($_POST['pseudo'])) and !empty(htmlspecialchars($_POST['password']))) {
-            //Créer des variable de session quand celle-ci est activée :
             $_SESSION['admin'] = $dataBaseAdmin['pseudo'];
             $_SESSION['idSession'] = '1';
             //Appeller les fonctions statiques des middlewares pour accéder au backend :
@@ -71,9 +70,13 @@ class ControllerBackend
     //Afficher la liste des épisodes :
     public function listEpisodesAdmin()
     {
-        //Récupèrer tous les derniers épisodes du blog :
-        $episodes = $this->_episode->readEpisodes();
-        require('View/backend/listEpisodesAdminView.php');
+        if (isset($_SESSION) and isset($_SESSION['idSession'])) {
+            //Récupèrer tous les derniers épisodes du blog :
+            $episodes = $this->_episode->readEpisodes();
+            require('View/backend/listEpisodesAdminView.php');
+        } else {
+            throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
+        }
     }
 
     //Se déconnecter de l'espace administrateur :
@@ -87,29 +90,36 @@ class ControllerBackend
     
     //Afficher la vue pour modifier ou supprimer un épisode :
     public function updateEpisodeView()
-    { 
-        if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
-            //Récupèrer un épisode précis en fonction de son id :
-            $detailsEpisode = $this->_episode->readEpisode($_GET['idEpisode']);
-            //Récupèrer les commentaires associés à un ID d'épisode :
-            $comments = $this->_comment->readComments($_GET['idEpisode']);
-            require('view/backend/updateEpisodesView.php');
+    {
+        if (isset($_SESSION) and isset($_SESSION['idSession'])) {
+            if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
+                //Récupèrer un épisode précis en fonction de son id :
+                $detailsEpisode = $this->_episode->readEpisode($_GET['idEpisode']);
+                //Récupèrer les commentaires associés à un ID d'épisode :
+                $comments = $this->_comment->readComments($_GET['idEpisode']);
+                require('view/backend/updateEpisodesView.php');
+            } else {
+                throw new Exception('Aucun identifiant d\'épisode envoyé');
+            }
         } else {
-            throw new Exception('Aucun identifiant d\'épisode envoyé');
+            throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
         }
- 
     }
     
     //Afficher le formulaire pour ajouter un épisode :
     public function adminFormToAddEpisode()
     {
-        require('view/backend/addEpisodesView.php');
+        if (isset($_SESSION) and isset($_SESSION['idSession'])) {
+            require('view/backend/addEpisodesView.php');
+        } else {
+            throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
+        }
     }
     
     //Ajouter un épisode :
     public function addEpisode($title, $content)
     {
-        if (isset($_SESSION) and isset($_SESSION['idSession']) and $_SESSION['idSession'] == $dataBaseAdmin['idSession']) {
+        if (isset($_SESSION) and isset($_SESSION['idSession'])) {
             if (isset($_POST) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['content']))) {
                 if (strlen($_POST['title']) <= 100) {
                     //Insérer un épisode :
@@ -128,73 +138,88 @@ class ControllerBackend
 
     public function deleteComment($idComment, $idEpisode)
     {
-        if (isset($_GET['idEpisode'])) {
-            if ($_GET['idEpisode'] > 0) {
-                if (isset($_GET['idComment']) and $_GET['idComment'] > 0) {
-                    $comments = $this->_comment->deleteComment($idComment, $idEpisode);
-                    header('Location: index.php?action=updateEpisodeView&idEpisode=' . $idEpisode);
+        if (isset($_SESSION) and isset($_SESSION['idSession'])) {
+            if (isset($_GET['idEpisode'])) {
+                if ($_GET['idEpisode'] > 0) {
+                    if (isset($_GET['idComment']) and $_GET['idComment'] > 0) {
+                        $comments = $this->_comment->deleteComment($idComment, $idEpisode);
+                        header('Location: index.php?action=updateEpisodeView&idEpisode=' . $idEpisode);
+                    } else {
+                        throw new Exception('Aucun identifiant de commentaire envoyé');
+                    }
                 } else {
-                    throw new Exception('Aucun identifiant de commentaire envoyé');
+                    throw new Exception('Identifiant d\'épisode incorrect');
                 }
             } else {
-                throw new Exception('Identifiant d\'épisode incorrect');
+                throw new Exception('Aucun identifiant d\'épisode envoyé');
             }
         } else {
-            throw new Exception('Aucun identifiant d\'épisode envoyé');
+            throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
         }
     }
 
     public function deleteEpisode($idEpisode)
     {
-        if (isset($_GET['idEpisode'])) {
-            if ($_GET['idEpisode'] > 0) {
-                $detailsEpisode = $this->_episode->deleteEpisode($idEpisode);
-                $comments = $this->_comment->deleteComments($idEpisode);
-                header('Location: index.php?action=listEpisodesAdmin');
-            } else {
-                throw new Exception('Identifiant d\'épisode incorrect');
-            }
-        } else {
-            throw new Exception('Aucun identifiant d\'épisode envoyé');
-        }
-        require('view/backend/updateEpisodesView.php');
-    }
-
-    public function updateEpisode($content, $idEpisode)
-    {
-        if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
-            if (!empty($_POST['content'])) {
-                $newEpisode = $this->_episode->updateEpisode($content, $idEpisode);
- 
-                if ($newEpisode === false) {
-                    throw new Exception('Impossible de modifier l\'épisode !');
+        if (isset($_SESSION) and isset($_SESSION['idSession'])) {
+            if (isset($_GET['idEpisode'])) {
+                if ($_GET['idEpisode'] > 0) {
+                    $detailsEpisode = $this->_episode->deleteEpisode($idEpisode);
+                    $comments = $this->_comment->deleteComments($idEpisode);
+                    header('Location: index.php?action=listEpisodesAdmin');
                 } else {
-                    header('Location: index.php?action=updateEpisodeView&idEpisode=' . $idEpisode);
+                    throw new Exception('Identifiant d\'épisode incorrect');
                 }
             } else {
-                throw new Exception('Tous les champs ne sont pas remplis !');
+                throw new Exception('Aucun identifiant d\'épisode envoyé');
+            }
+            require('view/backend/updateEpisodesView.php');
+        } else {
+            throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
+        }
+    }
+
+    public function updateEpisode($title, $content, $idEpisode)
+    {
+        if (isset($_SESSION) and isset($_SESSION['idSession'])) {
+            if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
+                if (!empty($_POST['title']) and !empty($_POST['content'])) {
+                    $newEpisode = $this->_episode->updateEpisode($title, $content, $idEpisode);
+ 
+                    if ($newEpisode === false) {
+                        throw new Exception('Impossible de modifier l\'épisode !');
+                    } else {
+                        header('Location: index.php?action=updateEpisodeView&idEpisode=' . $idEpisode);
+                    }
+                } else {
+                    throw new Exception('Tous les champs ne sont pas remplis !');
+                }
+            } else {
+                throw new Exception('Aucun identifiant de billet envoyÃ©');
             }
         } else {
-            throw new Exception('Aucun identifiant de billet envoyÃ©');
+            throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
         }
     }
     
     //Afficher les commentaires signalés :
     public function reportedCommentsView()
     {
-        //Récupèrer les commentaires signalés :
-        $comments = $this->_comment->readReportedComment();
-        require('view/backend/reportedCommentsView.php');
+        if (isset($_SESSION) and isset($_SESSION['idSession'])) {
+            //Récupèrer les commentaires signalés :
+            $comments = $this->_comment->readReportedComment();
+            require('view/backend/reportedCommentsView.php');
+        } else {
+            throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
+        }
     }
+
     
     //Modérer les commentaires :
     public function moderatedComment($idComment)
     {
-        $admin = $this->_admin->readAdmin();
-        $dataBaseAdmin = $admin->fetch();
-        //Si une session est bien active :
-        if (session_status() === PHP_SESSION_ACTIVE) {
-            //if (session_id() == $dataBaseAdmin['idSession']) {
+        if (isset($_SESSION) and isset($_SESSION['idSession'])) {
+            $admin = $this->_admin->readAdmin();
+            $dataBaseAdmin = $admin->fetch();
             if (isset($idComment) and $idComment > 0) {
                 $moderateComment = $this->_comment->isModerateComment($idComment);
                 if ($moderateComment === false) {
@@ -205,20 +230,17 @@ class ControllerBackend
             } else {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
             }
-            /*} else {
-                throw new Exception('Vous n\'avez pas les droits suffisants !');
-            }*/
         } else {
-            throw new Exception('Aucune session d\'activée !');
+            throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
         }
     }
     
     //Publier les commentaires :
     public function publishedComments($idComment)
     {
-        $admin = $this->_admin->readAdmin();
-        $dataBaseAdmin = $admin->fetch();
-        if (session_status() === PHP_SESSION_ACTIVE) {
+        if (isset($_SESSION) and isset($_SESSION['idSession'])) {
+            $admin = $this->_admin->readAdmin();
+            $dataBaseAdmin = $admin->fetch();
             if (isset($idComment) and $idComment > 0) {
                 $moderateComment = $this->_comment->isPublishedComment($idComment);
                 if ($moderateComment === false) {
@@ -230,7 +252,7 @@ class ControllerBackend
                 throw new Exception('Aucun identifiant de commentaire envoyé');
             }
         } else {
-            throw new Exception('Aucune session d\'activée !');
+            throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
         }
     }
 }
