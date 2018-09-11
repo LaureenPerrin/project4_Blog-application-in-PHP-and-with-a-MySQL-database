@@ -1,9 +1,14 @@
 <?php
 
+if (!isset($_SESSION['admin'])) {
+    session_start();
+}
+  
 use \projet4\Model\Repository\EpisodeRepo;
 use \projet4\Model\Repository\AdminRepo;
 use \projet4\Model\Repository\CommentRepo;
 use \projet4\Services\PasswordVerificationService;
+use \projet4\Services\CheckSessionLoginService;
 
 // Chargement des classes :
 require_once("Model/Repository/Model_Repository_EpisodeManager.php");
@@ -13,6 +18,7 @@ require_once("Model/Repository/Model_Repository_CommentRepo.php");
 require_once("Model/Repository/Model_Repository_AdminManager.php");
 require_once("Model/Repository/Model_Repository_AdminRepo.php");
 require_once("Services/Services_PasswordVerificationService.php");
+require_once("Services/Services_CheckSessionLoginService.php");
 
 class ControllerBackend
 {
@@ -39,17 +45,22 @@ class ControllerBackend
         $admin = $this->_admin->readAdmin();
         //Récupérer les données de l'admin :
         $dataBaseAdmin = $admin->fetch();
-        if (isset($_POST) and !empty(htmlspecialchars($_POST['pseudo'])) and !empty(htmlspecialchars($_POST['password']))) {
+        if (isset($_POST) and isset($_POST['pseudo']) and isset($_POST['password']) and !empty(htmlspecialchars($_POST['pseudo'])) and !empty(htmlspecialchars($_POST['password']))) {
+            //Créer des variable de session quand celle-ci est activée :
+            $_SESSION['admin'] = $dataBaseAdmin['pseudo'];
+            $_SESSION['idSession'] = '1';
+            //Appeller les fonctions statiques des middlewares pour accéder au backend :
+            $isIdSessionCorrect = CheckSessionLoginService::IdSessionVerification($_SESSION['idSession'], $dataBaseAdmin['idSession']);
             $isCorrectPassword = PasswordVerificationService::isPasswordCorrect($_POST['password'], $dataBaseAdmin['password']);
-            if (($_POST['pseudo'] == $dataBaseAdmin['pseudo']) and $isCorrectPassword) {
-                //Vérifier si l'id de la session créée est bien celui attribué à l'admin :
-                if (session_id() == $dataBaseAdmin['idSession']) {
+            $isCorrectPseudo = PasswordVerificationService::isPseudoCorrect($_POST['pseudo'], $dataBaseAdmin['pseudo']);
+            if ($isIdSessionCorrect) {
+                if ($isCorrectPseudo and $isCorrectPassword) {
                     header('Location: index.php?action=listEpisodesAdmin');
                 } else {
-                    $error = "Vous n'avez pas les droits suffisants pour accéder à ces pages.";
+                    $error = "Identifiants incorrects !" ;
                 }
             } else {
-                $error = "Identifiants incorrects !" ;
+                $error = "Impossible de se connecter à l'espace adminitrateur !";
             }
         } else {
             $error = "Veuillez remplir tous les champs s'il vous plaît !";
@@ -76,7 +87,7 @@ class ControllerBackend
     
     //Afficher la vue pour modifier ou supprimer un épisode :
     public function updateEpisodeView()
-    {
+    { 
         if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
             //Récupèrer un épisode précis en fonction de son id :
             $detailsEpisode = $this->_episode->readEpisode($_GET['idEpisode']);
@@ -86,6 +97,7 @@ class ControllerBackend
         } else {
             throw new Exception('Aucun identifiant d\'épisode envoyé');
         }
+ 
     }
     
     //Afficher le formulaire pour ajouter un épisode :
@@ -97,16 +109,20 @@ class ControllerBackend
     //Ajouter un épisode :
     public function addEpisode($title, $content)
     {
-        if (isset($_POST) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['content']))) {
-            if (strlen($_POST['title']) <= 100) {
-                //Insérer un épisode :
-                $insertEpisode = $this->_episode->createEpisodes($title, $content);
-                header('Location: index.php?action=listEpisodesAdmin');
+        if (isset($_SESSION) and isset($_SESSION['idSession']) and $_SESSION['idSession'] == $dataBaseAdmin['idSession']) {
+            if (isset($_POST) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['content']))) {
+                if (strlen($_POST['title']) <= 100) {
+                    //Insérer un épisode :
+                    $insertEpisode = $this->_episode->createEpisodes($title, $content);
+                    header('Location: index.php?action=listEpisodesAdmin');
+                } else {
+                    throw new Exception('Titre ou contenu de l\'épisode incorrects.');
+                }
             } else {
-                throw new Exception('Titre ou contenu de l\'épisode incorrects.');
+                throw new Exception('Veuillez remplir tous les champs s\'il vous plaît !');
             }
         } else {
-            throw new Exception('Veuillez remplir tous les champs s\'il vous plaît !');
+            throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
         }
     }
 
