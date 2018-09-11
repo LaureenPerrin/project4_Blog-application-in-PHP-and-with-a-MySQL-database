@@ -9,9 +9,10 @@
         <div id="titleAddEpisode">
             <label for="title">Titre de l'épisode :</label>
             <br />
-            <input type="text" id="title" name="title" />
+            <input type="text" id="myTextareaTitle" name="title" />
         </div>
         <div class="addComment">
+        
             <label class="contentAddEpisode" for="content">Contenu de l'épisode :</label>
             <br />
             <textarea class="textAddComment" id="myTextarea" name="content"></textarea>

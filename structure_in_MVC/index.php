@@ -42,7 +42,7 @@ try {
         } elseif ($_GET['action'] == 'deleteEpisode') {
             $routeBackend->deleteEpisode($_GET['idEpisode']);
         } elseif ($_GET['action'] == 'updateEpisode') {
-            $routeBackend->updateEpisode($_POST['content'], $_GET['idEpisode']);
+            $routeBackend->updateEpisode($_POST['title'], $_POST['content'], $_GET['idEpisode']);
         } elseif ($_GET['action'] == 'reportedCommentsView') {
             $routeBackend->reportedCommentsView();
         } elseif ($_GET['action'] == 'moderatedComment') {
