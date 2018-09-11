@@ -1,9 +1,11 @@
 <?php $title = 'Mon blog'; ?>
 
 <?php ob_start(); ?>
-
+<h2> <?= 'Bonjour ' . $_SESSION['admin'] . ' !';?></h2>
 <h2>Liste des épisodes</h2>
 <?php
+
+
 while ($data = $episodes->fetch()) {
     ?>
 <div class="episodes">
