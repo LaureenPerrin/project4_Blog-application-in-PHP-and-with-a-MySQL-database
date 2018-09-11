@@ -41,12 +41,29 @@ if (isset($_SESSION['admin'])) {
     <link rel="stylesheet" type="text/css" href="public/css/style.css" />
 
     <!--lien pour Tinymce-->
-    <script type="text/javascript" src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=f1z0mxiy25ovdbuqio3rql71n6tjvswysrwyhy7ym1y28mln"></script>
     <script type="text/javascript">
         tinymce.init({
-            selector: '#myTextarea',
+            selector: '#myTextarea', 
             theme: 'modern',
             height: 500,
+            plugins: "autoresize",
+            entity_encoding: "raw",
+            plugins: [
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'save table contextmenu directionality emoticons template paste textcolor'
+            ],
+            content_css: 'css/content.css',
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+        });
+    </script>
+
+     <script type="text/javascript">
+        tinymce.init({
+            selector: '#myTextareaTitle', 
+            theme: 'modern',
+            height: 100,
             plugins: "autoresize",
             entity_encoding: "raw",
             plugins: [
