@@ -53,14 +53,8 @@ require_once("Model/Interfaces/Model_Interface_Deletable.php");
      }
      
      /*fonctions pour interface updatable----*/
-     public function updateItemByIds($content, $idEpisode)
+     public function updateItemByIds($contentItem, $idItem)
      {
-         $db = $this->dbConnect();
-         $req = $db->prepare("UPDATE `episodes` SET `content` = :valuecontent WHERE `idEpisode` = :valueid");
-         $req->bindParam(':valuecontent', $content);
-         $req->bindParam(':valueid', $idEpisode);
-         $req->execute();
-         return $req;
      }
 
      public function updateItemById($idItem)
@@ -69,6 +63,17 @@ require_once("Model/Interfaces/Model_Interface_Deletable.php");
 
      public function updateItemByDataGet($idItem)
      {
+     }
+
+     public function updateItemByDataPost($title, $content, $idEpisode)
+     {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE `episodes` SET `title` = :valuetitle, `content` = :valuecontent WHERE `idEpisode` = :valueid");
+        $req->bindParam(':valuetitle', $title);
+        $req->bindParam(':valuecontent', $content);
+        $req->bindParam(':valueid', $idEpisode);
+        $req->execute();
+        return $req;
      }
 
      /*fonctions pour interface delatable----*/

@@ -90,6 +90,10 @@ require_once("Model/Interfaces/Model_Interface_Deletable.php");
          return $req;
      }
 
+     public function updateItemByDataPost($titleItem, $ContentItem, $idItem)
+     {
+     }
+
      /*fonctions pour interface delatable----*/
      public function deleteItemByIds($idComment, $idEpisode)
      {
