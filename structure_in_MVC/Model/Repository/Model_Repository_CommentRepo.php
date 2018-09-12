@@ -1,10 +1,10 @@
 <?php
 
-namespace projet4\Model\Repository;
+namespace projet4\model\repository;
 
-use projet4\Model\Repository\CommentManager;
+use projet4\model\repository\CommentManager;
 
-require_once("Model/Repository/Model_Repository_CommentManager.php");
+require_once("model/repository/Model_Repository_CommentManager.php");
 
 class CommentRepo extends CommentManager
 {

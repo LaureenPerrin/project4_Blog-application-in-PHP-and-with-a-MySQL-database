@@ -1,15 +1,15 @@
 <?php
-namespace projet4\Model\Repository;
+namespace projet4\model\repository;
 
-use projet4\Model\Repository\Manager;
-use projet4\Model\Interfaces\Creatable;
-use projet4\Model\Interfaces\Readable;
-use projet4\Model\Interfaces\Deletable;
+use projet4\model\repository\Manager;
+use projet4\model\interfaces\Creatable;
+use projet4\model\interfaces\Readable;
+use projet4\model\interfaces\Deletable;
 
-require_once("Model/Repository/Model_Repository_Manager.php");
-require_once("Model/Interfaces/Model_Interface_Creatable.php");
-require_once("Model/Interfaces/Model_Interface_Readable.php");
-require_once("Model/Interfaces/Model_Interface_Deletable.php");
+require_once("model/repository/Model_Repository_Manager.php");
+require_once("model/interfaces/Model_Interface_Creatable.php");
+require_once("model/interfaces/Model_Interface_Readable.php");
+require_once("model/interfaces/Model_Interface_Deletable.php");
 
  abstract class CommentManager extends Manager implements Creatable, Readable, Deletable
  {
@@ -40,7 +40,8 @@ require_once("Model/Interfaces/Model_Interface_Deletable.php");
          return $comments;
      }
    
-     public function readItemsById($idEpisode)//pour lire tous les commentaires d'un épisode en fonction de son id :
+     //Afficher tous les commentaires d'un épisode en fonction de son id :
+     public function readItemsById($idEpisode)
      {
          $db = $this->dbConnect();
          $comments = $db->prepare('SELECT idComment, idEpisode, author, content, DATE_FORMAT(addDate, \'%d/%m/%Y à %Hh%imin%ss\') AS addDate_fr, isReported, isModerate FROM comments WHERE idEpisode = ? ORDER BY addDate DESC');
@@ -49,7 +50,8 @@ require_once("Model/Interfaces/Model_Interface_Deletable.php");
          return $comments;
      }
      
-     public function readById($idComment)//récupère un commentaire précis en fonction de son id :
+     //Récupèrer un commentaire précis en fonction de son id :
+     public function readById($idComment)
      {
          $db = $this->dbConnect();
          $req = $db->prepare('SELECT idComment, author, content, DATE_FORMAT(addDate, \'%d/%m/%Y à %Hh%imin%ss\') AS addDate_fr FROM comments WHERE idComment = ?');

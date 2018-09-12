@@ -1,10 +1,10 @@
 <?php
 
-namespace projet4\Model\Repository;
+namespace projet4\model\repository;
 
-use projet4\Model\Repository\AdminManager;
+use projet4\model\repository\AdminManager;
 
-require_once("Model/Repository/Model_Repository_AdminManager.php");
+require_once("model/repository/Model_Repository_AdminManager.php");
 
 class AdminRepo extends AdminManager
 {

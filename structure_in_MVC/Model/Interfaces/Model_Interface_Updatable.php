@@ -1,6 +1,6 @@
 <?php
 
-namespace projet4\Model\Interfaces;
+namespace projet4\model\interfaces;
 
 //pour modifier item :
 interface Updatable

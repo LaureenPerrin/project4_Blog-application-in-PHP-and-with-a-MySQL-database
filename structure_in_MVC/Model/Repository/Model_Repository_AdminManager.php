@@ -1,12 +1,12 @@
 <?php
 
-namespace projet4\Model\Repository;
+namespace projet4\model\repository;
 
-use projet4\Model\Repository\Manager;
-use projet4\Model\Interfaces\Readable;
+use projet4\model\repository\Manager;
+use projet4\model\interfaces\Readable;
 
-require_once("Model/Repository/Model_Repository_Manager.php");
-require_once("Model/Interfaces/Model_Interface_Readable.php");
+require_once("model/repository/Model_Repository_Manager.php");
+require_once("model/interfaces/Model_Interface_Readable.php");
 
  abstract class AdminManager extends Manager implements Readable
  {
