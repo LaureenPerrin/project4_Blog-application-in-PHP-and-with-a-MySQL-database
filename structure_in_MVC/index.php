@@ -1,10 +1,9 @@
 <?php
 
-require('Controller/ControllerFrontend.php');
-require('Controller/ControllerBackend.php');
+require('controller/ControllerFrontend.php');
+require('controller/ControllerBackend.php');
 
 try {
-   
     $routeFrontend = new ControllerFrontend();
     $routeBackend = new ControllerBackend();
     

@@ -1,13 +1,13 @@
 <?php
 
-use \projet4\Model\Repository\EpisodeRepo;
-use \projet4\Model\Repository\CommentRepo;
+use \projet4\model\repository\EpisodeRepo;
+use \projet4\model\repository\CommentRepo;
 
 // Chargement des classes :
-require_once("Model/Repository/Model_Repository_EpisodeManager.php");
-require_once("Model/Repository/Model_Repository_EpisodeRepo.php");
-require_once("Model/Repository/Model_Repository_CommentManager.php");
-require_once("Model/Repository/Model_Repository_CommentRepo.php");
+require_once("model/repository/Model_Repository_EpisodeManager.php");
+require_once("model/repository/Model_Repository_EpisodeRepo.php");
+require_once("model/repository/Model_Repository_CommentManager.php");
+require_once("model/repository/Model_Repository_CommentRepo.php");
 
 class ControllerFrontend
 {

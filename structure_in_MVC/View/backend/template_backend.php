@@ -44,7 +44,7 @@ if (isset($_SESSION['admin'])) {
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=f1z0mxiy25ovdbuqio3rql71n6tjvswysrwyhy7ym1y28mln"></script>
     <script type="text/javascript">
         tinymce.init({
-            selector: '#myTextarea', 
+            selector: '#myTextarea',
             theme: 'modern',
             height: 500,
             plugins: "autoresize",
@@ -59,9 +59,9 @@ if (isset($_SESSION['admin'])) {
         });
     </script>
 
-     <script type="text/javascript">
+    <script type="text/javascript">
         tinymce.init({
-            selector: '#myTextareaTitle', 
+            selector: '#myTextareaTitle',
             theme: 'modern',
             height: 100,
             plugins: "autoresize",

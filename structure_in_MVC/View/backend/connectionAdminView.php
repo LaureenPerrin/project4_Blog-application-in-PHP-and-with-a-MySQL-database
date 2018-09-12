@@ -33,4 +33,4 @@
 <?php $content = ob_get_clean(); ?>
 
 <!--lien pour faire apparaitre variables $content et $title dans le template :-->
-<?php require('View/frontend/template_frontend.php');
+<?php require('view/frontend/template_frontend.php');
