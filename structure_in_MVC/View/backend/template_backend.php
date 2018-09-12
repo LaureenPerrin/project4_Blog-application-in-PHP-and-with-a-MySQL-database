@@ -19,13 +19,13 @@ if (isset($_SESSION['admin'])) {
     <!-- pour Facebook Open Graph data -->
     <meta property="og:title" content="Billet simple pour l'Alaska" />
     <meta property="og:type" content="blog" />
-    <meta property="og:url" content="http://.../" />
+    <meta property="og:url" content="http://www.project4.lperrindevweb.com/" />
     <meta property="og:image" content="public/images/logo_mountain2.png" />
     <meta property="og:description" content="Grâce à mon blog vous pouvez découvrir, au fur et mesure de sa création, mon nouveau roman 'Billet simple pour l\'Alaska'." />
 
     <!-- pour Twitter Card data -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@....com" />
+    <meta name="twitter:site" content="@project4.lperrindevweb.com/" />
     <meta name="twitter:creator" content="@jeanForteroche" />
     <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
     <meta property="og:title" content="Blog" />
