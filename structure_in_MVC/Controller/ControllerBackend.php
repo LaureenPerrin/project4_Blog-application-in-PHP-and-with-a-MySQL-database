@@ -4,21 +4,21 @@ if (!isset($_SESSION['admin'])) {
     session_start();
 }
   
-use \projet4\Model\Repository\EpisodeRepo;
-use \projet4\Model\Repository\AdminRepo;
-use \projet4\Model\Repository\CommentRepo;
-use \projet4\Services\PasswordVerificationService;
-use \projet4\Services\CheckSessionLoginService;
+use \projet4\model\repository\EpisodeRepo;
+use \projet4\model\repository\AdminRepo;
+use \projet4\model\repository\CommentRepo;
+use \projet4\services\PasswordVerificationService;
+use \projet4\services\CheckSessionLoginService;
 
 // Chargement des classes :
-require_once("Model/Repository/Model_Repository_EpisodeManager.php");
-require_once("Model/Repository/Model_Repository_EpisodeRepo.php");
-require_once("Model/Repository/Model_Repository_CommentManager.php");
-require_once("Model/Repository/Model_Repository_CommentRepo.php");
-require_once("Model/Repository/Model_Repository_AdminManager.php");
-require_once("Model/Repository/Model_Repository_AdminRepo.php");
-require_once("Services/Services_PasswordVerificationService.php");
-require_once("Services/Services_CheckSessionLoginService.php");
+require_once("model/repository/Model_Repository_EpisodeManager.php");
+require_once("model/repository/Model_Repository_EpisodeRepo.php");
+require_once("model/repository/Model_Repository_CommentManager.php");
+require_once("model/repository/Model_Repository_CommentRepo.php");
+require_once("model/repository/Model_Repository_AdminManager.php");
+require_once("model/repository/Model_Repository_AdminRepo.php");
+require_once("services/PasswordVerificationService.php");
+require_once("services/CheckSessionLoginService.php");
 
 class ControllerBackend
 {
@@ -73,7 +73,7 @@ class ControllerBackend
         if (isset($_SESSION) and isset($_SESSION['idSession'])) {
             //Récupèrer tous les derniers épisodes du blog :
             $episodes = $this->_episode->readEpisodes();
-            require('View/backend/listEpisodesAdminView.php');
+            require('view/backend/listEpisodesAdminView.php');
         } else {
             throw new Exception('Vous n\'avez pas les droits suffisants pour accéder à cette page');
         }
