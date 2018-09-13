@@ -1,3 +1,19 @@
+/*---------------------html et body et main-wrapper---------------*/
+
+html, body {
+	height: 100%;
+	margin: 0; padding: 0;
+}
+
+body {
+	display : table;
+	width: 100%;
+}
+
+div#main_wrapper {
+    margin-bottom: 10px;
+}
+
 /*------------------------header-----------------*/
 
 header{
@@ -271,6 +287,9 @@ footer{
     background-color:#29679A;
     color: white;
     margin-top: 200px;
+    display : table-row;
+    height: 50px; 
+    
 }
 
 i#topButtonFront {
