@@ -1,5 +1,4 @@
 <?php
-
 namespace projet4\services;
 
 //Service pour vérifier le password et le pseudo de l'admin lors de la connexion à l'espace administrateur :
@@ -10,7 +9,8 @@ class PasswordVerificationService
         return password_verify($passwordByPost, $passwordDataBaseAdmin);
     }
 
-    public static function isPseudoCorrect($pseudoByPost, $pseudoDataBaseAdmin){
+    public static function isPseudoCorrect($pseudoByPost, $pseudoDataBaseAdmin)
+    {
         return $pseudoByPost == $pseudoDataBaseAdmin;
     }
 }

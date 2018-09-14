@@ -1,6 +1,5 @@
 <?php
-
-namespace projet4\Model\Repository;
+namespace projet4\model\repository;
 
 abstract class Manager
 {

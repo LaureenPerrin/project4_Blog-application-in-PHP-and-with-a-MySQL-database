@@ -1,10 +1,9 @@
 <?php
+namespace projet4\model\repository;
 
-namespace projet4\Model\Repository;
+use projet4\model\repository\EpisodeManager;
 
-use projet4\Model\Repository\EpisodeManager;
-
-require_once("Model/Repository/Model_Repository_EpisodeManager.php");
+require_once("model/repository/Model_Repository_EpisodeManager.php");
 
 class EpisodeRepo extends EpisodeManager
 {

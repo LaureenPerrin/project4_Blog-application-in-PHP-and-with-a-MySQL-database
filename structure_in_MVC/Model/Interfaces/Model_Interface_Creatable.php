@@ -1,5 +1,4 @@
 <?php
-
 namespace projet4\model\interfaces;
 
 //créer/ajouter item :

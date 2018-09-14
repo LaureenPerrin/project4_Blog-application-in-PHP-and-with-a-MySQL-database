@@ -1,5 +1,4 @@
 <?php
-
 namespace projet4\model\repository;
 
 use projet4\model\repository\AdminManager;
