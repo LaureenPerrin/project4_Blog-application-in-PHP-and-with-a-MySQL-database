@@ -1,8 +1,3 @@
-<?php
-
-if (isset($_SESSION['admin'])) {
-    ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -77,6 +72,10 @@ if (isset($_SESSION['admin'])) {
     </script>
 
 </head>
+<?php
+
+if (isset($_SESSION['admin'])) {
+    ?>
 
 <body>
     <header class="container-fluid">
