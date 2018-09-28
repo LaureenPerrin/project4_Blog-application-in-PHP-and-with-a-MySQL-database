@@ -1,7 +1,9 @@
 <?php $title = 'Mon blog'; ?>
 
 <?php ob_start(); ?>
-<h2> <?= 'Bonjour ' . $_SESSION['admin'] . ' !';?></h2>
+<h2>
+    <?= 'Bonjour ' . $_SESSION['admin'] . ' !';?>
+</h2>
 <h2>Liste des épisodes</h2>
 <?php
 
@@ -11,13 +13,13 @@ while ($data = $episodes->fetch()) {
 <div class="episodes">
     <h3>
         <em>
-            <?= htmlspecialchars($data['title']) ?>
+            <?= htmlspecialchars_decode($data['title']) ?>
         </em>
     </h3>
 
     <p>
         <?php
-        $extract = substr(nl2br(htmlspecialchars($data['content'])), 0, 500);
+        $extract = substr(nl2br(htmlspecialchars_decode($data['content'])), 0, 500);
     $space = strrpos($extract, ' ');
     echo substr($extract, 0, $space) . '...'; ?>
         <br />

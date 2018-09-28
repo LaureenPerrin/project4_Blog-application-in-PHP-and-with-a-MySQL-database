@@ -12,7 +12,7 @@
             <input type="text" id="myTextareaTitle" name="title" />
         </div>
         <div class="addComment">
-        
+
             <label class="contentAddEpisode" for="content">Contenu de l'épisode :</label>
             <br />
             <textarea class="textAddComment" id="myTextarea" name="content"></textarea>

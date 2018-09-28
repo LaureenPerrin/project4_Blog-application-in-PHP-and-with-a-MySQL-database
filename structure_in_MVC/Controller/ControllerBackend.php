@@ -164,7 +164,6 @@ class ControllerBackend
             if (isset($_GET['idEpisode'])) {
                 if ($_GET['idEpisode'] > 0) {
                     $detailsEpisode = $this->_episode->deleteEpisode($idEpisode);
-                    $comments = $this->_comment->deleteComments($idEpisode);
                     header('Location: index.php?action=listEpisodesAdmin');
                 } else {
                     throw new Exception('Identifiant d\'épisode incorrect');
@@ -182,7 +181,7 @@ class ControllerBackend
     {
         if (isset($_SESSION) and isset($_SESSION['idSession'])) {
             if (isset($_GET['idEpisode']) && $_GET['idEpisode'] > 0) {
-                if (!empty($_POST['title']) and !empty($_POST['content'])) {
+                if (!empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['content']))) {
                     $newEpisode = $this->_episode->updateEpisode($title, $content, $idEpisode);
  
                     if ($newEpisode === false) {

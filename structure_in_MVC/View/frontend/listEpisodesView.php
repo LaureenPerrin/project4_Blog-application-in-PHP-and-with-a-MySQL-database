@@ -3,8 +3,10 @@
 <?php ob_start(); ?>
 <img src="public/images/alaska2.jpg" alt="payasage alaska" />
 <h1>Bonjour et bienvenue chers lecteurs!</h1>
-<p>Grâce à mon blog vous pouvez découvrir, au fur et mesure de sa création, mon nouveau roman "Billet simple pour l'Alaska".
-    Je publierais régulièrement mes épisodes et j'attends vos commentaires qui me permettront de réaliser le meilleur livre
+<p>Grâce à mon blog vous pouvez découvrir, au fur et mesure de sa création, mon nouveau roman "Billet simple pour
+    l'Alaska".
+    Je publierais régulièrement mes épisodes et j'attends vos commentaires qui me permettront de réaliser le meilleur
+    livre
     de ma carrière !</p>
 <p class="authorName">Jean FORTEROCHE</p>
 
@@ -15,13 +17,13 @@ while ($data = $episodes->fetch()) {
 <div class="episodes">
     <h3>
         <em>
-            <?= htmlspecialchars($data['title']) ?>
+            <?= htmlspecialchars_decode($data['title']) ?>
         </em>
     </h3>
 
     <p>
         <?php
-        $extract = substr(nl2br(htmlspecialchars($data['content'])), 0, 500);
+        $extract = substr(nl2br(htmlspecialchars_decode($data['content'])), 0, 500);
     $space = strrpos($extract, ' ');
     echo substr($extract, 0, $space) . '...'; ?>
         <br />

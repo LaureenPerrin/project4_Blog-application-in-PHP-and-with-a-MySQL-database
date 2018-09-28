@@ -112,10 +112,5 @@ require_once("model/interfaces/Model_Interface_Deletable.php");
 
      public function deleteItemsById($idEpisode)
      {
-         $db = $this->dbConnect();
-         $deleteComments = $db->prepare('DELETE FROM comments WHERE idEpisode = ?');
-         $deleteComments->execute(array($idEpisode));
-     
-         return $deleteComments;
      }
  }

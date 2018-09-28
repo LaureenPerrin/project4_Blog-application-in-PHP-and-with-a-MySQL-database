@@ -62,11 +62,4 @@ class CommentRepo extends CommentManager
         $deleteComment = $this->deleteItemByIds($idComment, $idEpisode);
         return $deleteComment;
     }
-    
-    //Supprimer les commentaires d'un épisode :
-    public function deleteComments($idEpisode)
-    {
-        $deleteComments = $this->deleteItemsById($idEpisode);
-        return $deleteComments;
-    }
 }

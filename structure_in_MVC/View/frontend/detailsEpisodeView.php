@@ -5,12 +5,12 @@
 <div class="episodes">
     <div>
         <h3>
-            <?= htmlspecialchars($detailsEpisode['title']) ?>
+            <?= htmlspecialchars_decode($detailsEpisode['title']) ?>
         </h3>
 
     </div>
     <p>
-        <?= nl2br(htmlspecialchars($detailsEpisode['content'])) ?>
+        <?= nl2br(htmlspecialchars_decode($detailsEpisode['content'])) ?>
         <br>
         <br>
         <em>

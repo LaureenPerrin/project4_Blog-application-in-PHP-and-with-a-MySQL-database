@@ -35,13 +35,13 @@ try {
         } elseif ($_GET['action'] == 'adminFormToAddEpisode') {
             $routeBackend->adminFormToAddEpisode();
         } elseif ($_GET['action'] == 'addEpisode') {
-            $routeBackend->addEpisode(strip_tags($_POST['title']), strip_tags($_POST['content']));
+            $routeBackend->addEpisode($_POST['title'], $_POST['content']);
         } elseif ($_GET['action'] == 'deleteComment') {
             $routeBackend->deleteComment($_GET['idComment'], $_GET['idEpisode']);
         } elseif ($_GET['action'] == 'deleteEpisode') {
             $routeBackend->deleteEpisode($_GET['idEpisode']);
         } elseif ($_GET['action'] == 'updateEpisode') {
-            $routeBackend->updateEpisode($_POST['title'], $_POST['content'], $_GET['idEpisode']);
+            $routeBackend->updateEpisode(htmlspecialchars_decode($_POST['title']), $_POST['content'], $_GET['idEpisode']);
         } elseif ($_GET['action'] == 'reportedCommentsView') {
             $routeBackend->reportedCommentsView();
         } elseif ($_GET['action'] == 'moderatedComment') {
